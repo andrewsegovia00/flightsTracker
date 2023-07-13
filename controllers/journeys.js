@@ -10,6 +10,7 @@ module.exports = {
 
 async function index(req, res) {
   const journeys = await Journey.find({});
+  console.log(journeys);
   res.render('dashboard/index', { title: 'My Journeys', journeys: journeys });
 }
 
@@ -24,7 +25,7 @@ async function show(req, res) {
   // The native MongoDB approach uses a query object to find 
   // performer docs whose _ids are not in the movie.cast array like this:
   // const performers = await Performer.find({ _id: { $nin: movie.cast } }).sort('name');
-  res.render('journeys/show', { title: `${journey.destination}`, journey });
+  res.render('dashboard/show', { title: `${journey.destination}`, journey: journey });
 }
 
 function newJourney(req, res) {

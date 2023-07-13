@@ -2,13 +2,14 @@
 
     <table>
         <tbody>
-            if(user) {
-            <tr>
-                <td class="review-user"><img alt="avatar" src="<%= r.userAvatar %>" referrerpolicy="no-referrer">
-                    <%= r.userName %>
-                </td>
-            </tr>
-            <% }; %>
+            <% if (user) { %>
+                <tr>
+                    <td class="review-user"><img alt="avatar" src="<%= journey.userAvatar %>"
+                            referrerpolicy="no-referrer">
+                        <%= journey.userName %>
+                    </td>
+                </tr>
+                <% } %>
         </tbody>
     </table>
 

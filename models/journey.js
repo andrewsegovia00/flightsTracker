@@ -63,7 +63,7 @@ const actualBudgetSchema = new Schema({
   });
 
 const journeySchema = new Schema({
-    Destination: {
+    destination: {
       type: String,
       required: true
     },
