@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+    <br><br>
+    <table id="list">
+        <tbody>
+            <tr>
+                <td><a href="/dashboard/new">Add a Journey</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <% if (journey) { %>
+        <h2>
+            <%= journey[0].destination %>
+        </h2>
+        <% } else { %>
+            <%- include('../partials/newJourney') %>
+                <% } %>
+                    <%- include('../partials/footer') %>

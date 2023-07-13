@@ -9,14 +9,17 @@ module.exports = {
 };
 
 async function index(req, res) {
-  const journeys = await Journey.find({});
-  res.render('/journeys/index', { title: 'My Journeys' });
+  console.log(`we made it here`)
+  // const journeys = await Journey.find({});
+  res.render('dashboard/index', { title: 'My Journeys' });
 }
 
 async function show(req, res) {
   // Populate the cast array with performer docs instead of ObjectIds
-  const journey = await Jounrney.findById(req.params.id);
   // const expense = await Expense.findById(req.params.id).populate('category'); 
+  
+  const journey = await Journey.findById(req.params.id);
+
   // Mongoose query builder approach to retrieve performers not the movie:
     // Performer.find({}).where('_id').nin(movie.cast)
   // The native MongoDB approach uses a query object to find 

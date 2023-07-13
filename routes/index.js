@@ -19,7 +19,7 @@ router.get('/auth/google', passport.authenticate(
 router.get('/oauth2callback', passport.authenticate(
   'google',
   {
-    successRedirect: '/',  //Update when routes change
+    successRedirect: '/dashboard',  //Update when routes change
     failureRedirect: '/',    //Update when routes change
   }
 ));
