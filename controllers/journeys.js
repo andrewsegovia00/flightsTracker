@@ -9,15 +9,14 @@ module.exports = {
 };
 
 async function index(req, res) {
-  console.log(`we made it here`)
-  // const journeys = await Journey.find({});
-  res.render('dashboard/index', { title: 'My Journeys' });
+  const journeys = await Journey.find({});
+  res.render('dashboard/index', { title: 'My Journeys', journeys: journeys });
 }
 
 async function show(req, res) {
   // Populate the cast array with performer docs instead of ObjectIds
   // const expense = await Expense.findById(req.params.id).populate('category'); 
-  
+
   const journey = await Journey.findById(req.params.id);
 
   // Mongoose query builder approach to retrieve performers not the movie:
@@ -31,7 +30,7 @@ async function show(req, res) {
 function newJourney(req, res) {
   // We'll want to be able to render an  
   // errorMsg if the create action fails
-  res.render('journeys/new', { title: 'Add Journey', errorMsg: '' });
+  res.render('dashboard/new', { title: 'Add Journey', errorMsg: '' });
 }
 
 async function create(req, res) {
@@ -43,7 +42,7 @@ async function create(req, res) {
   for (let key in req.body) {
     if (req.body[key] === '') delete req.body[key];
   }
-  
+  console.log(req.body);
   req.body.user = req.user._id;
   req.body.userName = req.user.name;
   req.body.userAvatar = req.user.avatar;
@@ -55,11 +54,11 @@ async function create(req, res) {
     // journey.push(req.body);
 
     // Redirect to the new movie's show functionality 
-    res.redirect(`/journeys/${journey._id}`);
+    res.redirect(`/dashboard`, {title: "All Journeys"}, {journeys: journey});
   } catch (err) {
     // Typically some sort of validation error
     console.log(err);
-    res.render('journey/new', { errorMsg: err.message });
+    res.render('dashboard/new', { errorMsg: err.message });
   }
 }
 
