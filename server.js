@@ -12,9 +12,11 @@ require('./config/database');
 require('./config/passport');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var journeyRouter = require('./routes/journey');
-var expenseRouter = require('./routes/expense');
+var journeysRouter = require('./routes/journeys');
+var actualBudgets = require('./routes/actualBudgets');
+var simulatedBudgetsRouter = require('./routes/simulatedBudgets');
+var expensesRouter = require('./routes/expenses');
+var categoriesRouter = require('./routes/categories');
 
 var app = express();
 
@@ -43,7 +45,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/journeys', journeysRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
