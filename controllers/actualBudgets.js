@@ -1,4 +1,4 @@
-const Journey = require('../models/movie');
+const Journey = require('../models/journey');
 
 module.exports = {
   create,

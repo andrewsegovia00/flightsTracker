@@ -4,13 +4,13 @@ const Journey = require('../models/journey');
 module.exports = {
   index,
   show,
-  new: newMovie,
+  new: newJourney,
   create
 };
 
 async function index(req, res) {
   const journeys = await Journey.find({});
-  res.render('journeys/index', { title: 'My Journeys', journeys });
+  res.render('/journeys/index', { title: 'My Journeys' });
 }
 
 async function show(req, res) {

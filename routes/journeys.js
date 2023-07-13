@@ -1,9 +1,11 @@
-const moviesCtrl = require('../controllers/movies');
-// Require the auth middleware
+const express = require('express');
+const router = express.Router();
+const journeysCtrl = require('../controllers/journeys');
 const ensureLoggedIn = require('../config/ensureLoggedIn');
 
-router.get('/', moviesCtrl.index);
-// Use ensureLoggedIn middleware to protect routes
-router.get('/new', ensureLoggedIn, moviesCtrl.new);
-router.get('/:id', moviesCtrl.show);
-router.post('/', ensureLoggedIn, moviesCtrl.create);
+router.get('/', journeysCtrl.index);
+router.get('/new', ensureLoggedIn, journeysCtrl.new);
+router.get('/:id', journeysCtrl.show);
+router.post('/', ensureLoggedIn, journeysCtrl.create);
+
+module.exports = router;

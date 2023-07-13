@@ -1,15 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const actualBudgetSchema = new Schema({
-    category: [categoryABSchema],
-    expenses: [expensesSchema],
-    },
-  {
-    timestamps: true
-  });
-
-  const expensesSchema = new Schema({
+const expensesSchema = new Schema({
     title: {
         type: String,
         required: true,
@@ -40,16 +32,13 @@ const actualBudgetSchema = new Schema({
     timestamps: true
   });
 
-  const simulatedBudgetSchema = new Schema({
-    category: [categorySBSchema],
-    totalBudget: {
-        type: Number,
-        default: 0,
-    }
-  }, {
+const actualBudgetSchema = new Schema({
+    category: [categoryABSchema],
+    expenses: [expensesSchema],
+    },
+  {
     timestamps: true
   });
-
 
   const categorySBSchema = new Schema({
     name: {
@@ -62,7 +51,16 @@ const actualBudgetSchema = new Schema({
   }, {
     timestamps: true
   });
-  
+
+  const simulatedBudgetSchema = new Schema({
+    category: [categorySBSchema],
+    totalBudget: {
+        type: Number,
+        default: 0,
+    }
+  }, {
+    timestamps: true
+  });
 
 const journeySchema = new Schema({
     Destination: {
