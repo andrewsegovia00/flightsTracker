@@ -11,12 +11,12 @@ require('dotenv').config();
 require('./config/database');
 require('./config/passport');
 
-var indexRouter = require('./routes/index');
-var journeysRouter = require('./routes/journeys');
-var actualBudgets = require('./routes/actualBudgets');
-var simulatedBudgetsRouter = require('./routes/simulatedBudgets');
-var expensesRouter = require('./routes/expenses');
-var categoriesRouter = require('./routes/categories');
+const indexRouter = require('./routes/index');
+const journeysRouter = require('./routes/journeys');
+const actualBudgetsRouter = require('./routes/actualBudgets');
+const simulatedBudgetsRouter = require('./routes/simulatedBudgets');
+const expensesRouter = require('./routes/expenses');
+const categoriesRouter = require('./routes/categories');
 
 var app = express();
 
@@ -46,6 +46,10 @@ app.use(function (req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/journeys', journeysRouter);
+app.use('/', actualBudgetsRouter);
+app.use('/', simulatedBudgetsRouter);
+app.use('/', expensesRouter);
+app.use('/', categoriesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
