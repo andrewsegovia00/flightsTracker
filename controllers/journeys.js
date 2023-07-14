@@ -52,7 +52,9 @@ async function create(req, res) {
     // Update this line because now we need the _id of the new movie
     const journey = await Journey.create(req.body);
 
-    // journey.push(req.body);
+    journey.actualBudget = { expenses: [], categories: [] };
+    
+    journey.simulatedBudget = { categories: [] };
 
     // Redirect to the new movie's show functionality 
     res.redirect(`/dashboard`, {title: "All Journeys"}, {journeys: journey});

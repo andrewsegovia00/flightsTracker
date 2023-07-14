@@ -13,10 +13,10 @@ require('./config/passport');
 
 const indexRouter = require('./routes/index');
 const dashboardRouter = require('./routes/dashboard');
+const expensesRouter = require('./routes/expenses');
+// const categoriesRouter = require('./routes/categories');
 // const actualBudgetsRouter = require('./routes/actualBudgets');
 // const simulatedBudgetsRouter = require('./routes/simulatedBudgets');
-// const expensesRouter = require('./routes/expenses');
-// const categoriesRouter = require('./routes/categories');
 
 var app = express();
 
@@ -46,10 +46,10 @@ app.use(function (req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/dashboard', dashboardRouter);
+app.use('/', expensesRouter);
+// app.use('/', categoriesRouter);
 // app.use('/', actualBudgetsRouter);
 // app.use('/', simulatedBudgetsRouter);
-// app.use('/', expensesRouter);
-// app.use('/', categoriesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -12,5 +12,45 @@
                 <% } %>
         </tbody>
     </table>
+    <br><br>
+    <h1>Actual Budget:</h1>
+    <form id="add-review-form" method="POST" action="/dashboard/<%= journey._id %>/expenses">
+        <label>Expense Name:</label>
+        <input type="text" name="title">
+        <label>Cost:</label>
+        <input type="number" name="price">
+        <label>Date:</label>
+        <input type="date" name="expenseDate">
+        <input type="submit" value="Add Expense">
+    </form>
+
+    <br><br>
+    <h1>Simulated Budget:</h1>
+    <form id="add-review-form" method="POST" action="/dashboard/<%= journey._id %>/expenses">
+        <label>Expense Name:</label>
+        <input type="text" name="title">
+        <label>Cost:</label>
+        <input type="number" name="price">
+        <label>Date:</label>
+        <input type="date" name="expenseDate">
+        <input type="submit" value="Add Expense">
+    </form>
+
+    <br><br>
+    <table>
+        <% if (journey.actualBudget && journey.actualBudget.length> 0) { %>
+            <% journey.actualBudget.forEach(function(actualBudget) { %>
+                <% if (actualBudget.expensesç && actualBudget.expenses.length> 0)
+                    { %>
+                    <% actualBudget.expenses.forEach(function(expense) { %>
+                        <h2>
+                            <%= expense.title %>
+                        </h2>
+                        <% }) %>
+                            <% } %>
+                                <% }) %>
+                                    <% } %>
+
+    </table>
 
     <%- include('../partials/footer') %>

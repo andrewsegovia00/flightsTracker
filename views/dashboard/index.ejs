@@ -5,7 +5,7 @@
         <% journeys.forEach(function(j) { %>
             <h2>
                 <a href="/dashboard/<%= j._id %>">
-                    <%= journeys[0].destination %>
+                    <%= j.destination %>
                 </a>
             </h2>
             <% }); %>
@@ -18,5 +18,12 @@
                         </tbody>
                     </table>
                     <% } %>
+                        <table id="list">
+                            <tbody>
+                                <tr>
+                                    <td><a href="/dashboard/new">Add a Journey</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
 
                         <%- include('../partials/footer') %>
