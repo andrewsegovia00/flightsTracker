@@ -1,17 +1,5 @@
 <%- include('../partials/header') %>
 
-    <table>
-        <tbody>
-            <% if (user) { %>
-                <tr>
-                    <td class="review-user"><img alt="avatar" src="<%= journey.userAvatar %>"
-                            referrerpolicy="no-referrer">
-                        <%= journey.userName %>
-                    </td>
-                </tr>
-                <% } %>
-        </tbody>
-    </table>
     <br><br>
     <h1>Actual Budget:</h1>
     <form id="add-review-form" method="POST" action="/dashboard/<%= journey._id %>/expenses">

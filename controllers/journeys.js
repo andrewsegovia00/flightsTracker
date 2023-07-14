@@ -1,5 +1,4 @@
 const Journey = require('../models/journey');
-// const Performer = require('../models/performer');
 
 module.exports = {
   index,
@@ -29,37 +28,24 @@ async function show(req, res) {
 }
 
 function newJourney(req, res) {
-  // We'll want to be able to render an  
-  // errorMsg if the create action fails
   res.render('dashboard/new', { title: 'Add Journey', errorMsg: '' });
 }
 
 async function create(req, res) {
-  // convert nowShowing's checkbox of nothing or "on" to boolean
-
-  // req.body.nowShowing = !!req.body.nowShowing;
-
-  // Remove empty properties so that defaults will be applied
   for (let key in req.body) {
     if (req.body[key] === '') delete req.body[key];
   }
-  console.log(req.body);
   req.body.user = req.user._id;
-  req.body.userName = req.user.name;
-  req.body.userAvatar = req.user.avatar;
 
   try {
-    // Update this line because now we need the _id of the new movie
     const journey = await Journey.create(req.body);
 
     journey.actualBudget = { expenses: [], categories: [] };
-    
     journey.simulatedBudget = { categories: [] };
+    journey.save();
 
-    // Redirect to the new movie's show functionality 
     res.redirect(`/dashboard`, {title: "All Journeys"}, {journeys: journey});
   } catch (err) {
-    // Typically some sort of validation error
     console.log(err);
     res.render('dashboard/new', { errorMsg: err.message });
   }

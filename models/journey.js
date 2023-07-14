@@ -67,15 +67,15 @@ const journeySchema = new Schema({
       type: String,
       required: true
     },
-    actualBudget: [actualBudgetSchema],
-    simulatedBudget: [simulatedBudgetSchema],
+    actualBudget: actualBudgetSchema,
+    simulatedBudget: simulatedBudgetSchema,
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User',
       required: true
     },
-    userName: String,
-    userAvatar: String
+    // userName: String,
+    // userAvatar: String
   }, {
     timestamps: true
   });

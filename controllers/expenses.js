@@ -22,18 +22,10 @@ async function deleteExpense(req, res) {
 async function create(req, res) {
   const journey = await Journey.findById(req.params.id);
 
-if (journey.actualBudget.length === 0) {
-    const actualBudget = {
-      expenses: [req.body],
-      category: [] //may need to be deleted
-    };
-
-    journey.actualBudget.push(actualBudget);
-  } else {
-    const actualBudget = journey.actualBudget[0];
-    actualBudget.expenses.push(req.body);
-  }
-
+  const actualBudget = journey.actualBudget;
+  actualBudget.expenses.push(req.body);
+    console.log(actualBudget);
+    console.log(req.body);
   try {
     await journey.save();
   } catch (err) {
