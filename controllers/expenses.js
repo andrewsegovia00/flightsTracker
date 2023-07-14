@@ -2,6 +2,7 @@ const Journey = require('../models/journey');
 
 module.exports = {
   create,
+  createCategory,
   // Add this export
   delete: deleteExpense
 };
@@ -34,11 +35,11 @@ async function create(req, res) {
   res.redirect(`/dashboard/${journey._id}`);
 }
 
-async function create2(req, res) {
+async function createCategory(req, res) {
     const journey = await Journey.findById(req.params.id);
-
-    journey.simulatedlBudget[0].categories.push(req.body);
-    console.log(req.body)
+  
+    const actualBudget = journey.actualBudget;
+    actualBudget.category.push(req.body);
     try {
       await journey.save();
     } catch (err) {

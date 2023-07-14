@@ -14,6 +14,8 @@ const ensureLoggedIn = require('../config/ensureLoggedIn');
 
 // POST /movies/:id/reviews (create review for a movie)
 router.post('/dashboard/:id/expenses', ensureLoggedIn, expensesCtrl.create);
+
+router.post('/dashboard/:id/expenses2', ensureLoggedIn, expensesCtrl.createCategory);
 // DELETE /reviews
 router.delete('/expenses/:id', ensureLoggedIn, expensesCtrl.delete);
 
