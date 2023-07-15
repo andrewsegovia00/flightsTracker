@@ -41,6 +41,21 @@
                     <% } %>
                         <% }) %>
                             <% } %>
+                                <% if (journey.simulatedBudget.category.length> 0) { %>
+                                    <% journey.simulatedBudget.category.forEach(function(category) { %>
+                                        <% if (category) { %>
+                                            <div>
+                                                <h2>
+                                                    <%= category.name %>
+                                                </h2>
+                                                <h2>
+                                                    <%= category.price %>
+                                                </h2>
+                                            </div>
+                                            <% } %>
+                                                <% }) %>
+                                                    <% } %>
+
 
     </table>
 

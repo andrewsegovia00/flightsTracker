@@ -8,6 +8,8 @@ module.exports = {
 };
 
 async function index(req, res) {
+  // const journeys = await Journey.find({});
+  console.log(req.body)
   const journeys = await Journey.find({});
   console.log(journeys);
   res.render('dashboard/index', { title: 'My Journeys', journeys: journeys });
