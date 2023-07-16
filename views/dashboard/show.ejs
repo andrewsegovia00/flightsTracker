@@ -4,9 +4,9 @@
         <div class="container">
             <div class="row"><input id="switch" type="checkbox"></div>
             <div class="row">
-                <div class="col-12 border border-dark" id="ActualBudget">
+                <div class="col-12" id="ActualBudget">
                     <h1>Expenses Actual Budget:</h1>
-                    <table class="table table-success table-striped">
+                    <table>
                         <div class="row">
                             <h4 class="col-3">Title</h4>
                             <h4 class="col-3">Price</h4>
@@ -21,17 +21,23 @@
                                             <%= expense.title %>
                                         </p>
                                         <p class="col-3">
-                                            <%= expense.price %>
+                                            $<%= expense.price %>
                                         </p>
                                         <p class="col-3">
                                             <%= expense.expenseDate.toLocaleDateString('en-US') %>
                                         </p>
-                                        <div class="col-3">
+                                        <div class="col-3 btn-container">
+                                            <form action="/expenses/<%= expense._id %>?_method=UPDATE" method="POST">
+                                                <button type="submit"> <img
+                                                        src="https://cdn2.iconfinder.com/data/icons/daily-use/600/pencil-512.png"
+                                                        alt="Update Expense" id="updateExpenseImage"
+                                                        class="imgBtn update-btn"></button>
+                                            </form>
                                             <form action="/expenses/<%= expense._id %>?_method=DELETE" method="POST">
                                                 <button type="submit"> <img
-                                                        src="https://pic.onlinewebfonts.com/thumbnails/icons_55417.svg"
+                                                        src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"
                                                         alt="Add Expense" id="deleteExpenseImage"
-                                                        class="imgBtn"></button>
+                                                        class="imgBtn delete-btn"></button>
                                             </form>
                                         </div>
                                         <% } %>
@@ -44,38 +50,39 @@
                     <div id="showExpense" class="hide">
                         <form id="expenseForm" class="" method="POST" action="/dashboard/<%= journey._id %>/expenses">
                             <div class="row">
-                                <label>Expense Name:</label>
-                                <input type="text" name="title">
+                                <label>Expense:</label>
+                                <input type="text" name="title" placeholder="Title">
                             </div>
                             <div class="row">
-                                <label>Cost:</label>
-                                <input type="number" name="price">
+                                <label>Price:</label>
+                                <input type="number" name="price" step="0.01" placeholder="$0.00">
                             </div>
                             <div class="row">
                                 <label>Date:</label>
                                 <input type="date" name="expenseDate">
                             </div>
-                            <input type="submit" value="" style="background: none; border: none;">
-                            <img src="https://pic.onlinewebfonts.com/thumbnails/icons_55417.svg" alt="Add Expense"
-                                id="addExpenseImage" class="imgBtn">
+                            <button id="expenseCloseBtn">Cancel</button>
+                            <input type="submit" value="Save">
                         </form>
                     </div>
+
                     <div id="showCat" class="hide">
                         <form id="categoryForm" method="POST" action="/dashboard/<%= journey._id %>/expenses2">
                             <label>Category Name:</label>
-                            <input type="text" name="name">
+                            <input type="text" name="name" placeholder="Name">
                             <input type="submit" value="" style="background: none; border: none;">
-                            <img src="https://pic.onlinewebfonts.com/thumbnails/icons_55417.svg" alt="Add Category"
-                                id="addCategoryImage" class="imgBtn">
+                            <button id="categoryABCloseBtn">Cancel</button>
+                            <input type="submit" value="Save">
                         </form>
                     </div>
+
                     <button id="addExpenseBtn" class="button">Add Expense</button>
                     <button id="addCategoryBtn" class="button">Add Category</button>
                 </div>
 
                 <div class="col-12 hide" id="simulatedBudget">
                     <h1>Simulated Budget:</h1>
-                    <table class="table table-success table-striped">
+                    <table>
                         <div class="row">
                             <h4 class="col-4">Title</h4>
                             <h4 class="col-4">Price</h4>
@@ -98,6 +105,8 @@
                         </div>
                     </table>
                     <div id="showSimCat" class="hide">
+                        <button id="categorySBCloseBtn">&times;</button>
+
                         <form id="simCategoryForm" method="POST" action="/dashboard/<%= journey._id %>/expenses3">
                             <label>Expense Name:</label>
                             <input type="text" name="name">
@@ -109,9 +118,13 @@
                                 alt="Add Simulated Category" id="addSimCategoryImage" class="imgBtn">
                         </form>
                     </div>
-                    <button id="addSimCategoryBtn" class="button">Add Category</button>
+                    <button id="addSimCategoryBtn" class="button">
+                        <img src="https://cdn-icons-png.flaticon.com/512/32/32339.png" alt="Add Simulated Category"
+                            id="addSimCategoryImage" class="imgBtn">
+                        Categories</button>
                 </div>
             </div>
+            <div id="overlay"></div>
         </div>
         <script defer src="/javascripts/dashboard.js"></script>
         <%- include('../partials/footer') %>

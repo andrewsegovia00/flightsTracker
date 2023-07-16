@@ -208,7 +208,58 @@ hr {
 }
 
 .imgBtn {
-  height: 40px;
   width: 40px;
+  height: 40px;
   cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  /* Move this line after the background-size property */
+  outline: none;
+}
+
+.btn-container {
+  display: flex;
+  gap: 10px;
+  border: none;
+}
+
+.update-btn {
+  background-image: url("https://cdn2.iconfinder.com/data/icons/daily-use/600/pencil-512.png");
+}
+
+.delete-btn {
+  background-image: url("https://cdn-icons-png.flaticon.com/512/1843/1843344.png");
+}
+
+.popUp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  border-radius: 10px;
+  z-index: 10;
+  background-color: white;
+  width: 500px;
+  max-width: 80%;
+  padding: 20px;
+}
+
+#overlay {
+  position: fixed;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  backdrop-filter: blur(2px);
+}
+
+#overlay.active {
+  opacity: 1;
+  pointer-events: all;
 }

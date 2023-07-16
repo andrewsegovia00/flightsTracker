@@ -18,7 +18,6 @@ async function deleteExpense(req, res) {
     );
     journey.actualBudget.expenses.splice(expenseIndex, 1);
 
-  // Save the updated movie doc
   await journey.save();
   res.redirect(`/dashboard/${journey._id}`);
 }
