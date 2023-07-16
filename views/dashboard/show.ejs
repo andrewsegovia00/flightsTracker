@@ -1,62 +1,117 @@
-<%- include('../partials/header') %>
+<% shouldIncludeDashboardJS=true %>
+    <%- include('../partials/header') %>
 
-    <br><br>
-    <h1>Expenses Actual Budget:</h1>
-    <form id="add-review-form" method="POST" action="/dashboard/<%= journey._id %>/expenses">
-        <label>Expense Name:</label>
-        <input type="text" name="title">
-        <label>Cost:</label>
-        <input type="number" name="price">
-        <label>Date:</label>
-        <input type="date" name="expenseDate">
-        <input type="submit" value="Add Expense">
-    </form>
-
-    <br><br>
-    <h1>Category Actual Budget:</h1>
-    <form id="add-review-form" method="POST" action="/dashboard/<%= journey._id %>/expenses2">
-        <label>Category Name:</label>
-        <input type="text" name="name">
-        <input type="submit" value="Add Category">
-    </form>
-
-    <br><br>
-    <h1>Simulated Budget:</h1>
-    <form id="add-review-form" method="POST" action="/dashboard/<%= journey._id %>/expenses3">
-        <label>Expense Name:</label>
-        <input type="text" name="name">
-        <label>Cost:</label>
-        <input type="number" name="price">
-        <input type="submit" value="Add Category">
-    </form>
-
-    <br><br>
-    <table>
-        <% if (journey.actualBudget.expenses.length> 0) { %>
-            <% journey.actualBudget.expenses.forEach(function(expense) { %>
-                <% if (expense) { %>
-                    <h2>
-                        <%= expense.title %>
-                    </h2>
-                    <% } %>
-                        <% }) %>
-                            <% } %>
-                                <% if (journey.simulatedBudget.category.length> 0) { %>
-                                    <% journey.simulatedBudget.category.forEach(function(category) { %>
-                                        <% if (category) { %>
-                                            <div>
-                                                <h2>
-                                                    <%= category.name %>
-                                                </h2>
-                                                <h2>
-                                                    <%= category.price %>
-                                                </h2>
-                                            </div>
-                                            <% } %>
-                                                <% }) %>
-                                                    <% } %>
+        <div class="container">
+            <div class="row"><input id="switch" type="checkbox"></div>
+            <div class="row">
+                <div class="col-12 border border-dark" id="ActualBudget">
+                    <h1>Expenses Actual Budget:</h1>
+                    <table class="table table-success table-striped">
+                        <div class="row">
+                            <h4 class="col-3">Title</h4>
+                            <h4 class="col-3">Price</h4>
+                            <h4 class="col-3">Date</h4>
+                            <h4 class="col-3">Category</h4>
+                        </div>
+                        <div class="row">
+                            <% if (journey.actualBudget.expenses.length> 0) { %>
+                                <% journey.actualBudget.expenses.forEach(function(expense) { %>
+                                    <% if (expense) { %>
+                                        <p class="col-3">
+                                            <%= expense.title %>
+                                        </p>
+                                        <p class="col-3">
+                                            <%= expense.price %>
+                                        </p>
+                                        <p class="col-3">
+                                            <%= expense.expenseDate.toLocaleDateString('en-US') %>
+                                        </p>
+                                        <div class="col-3">
+                                            <form action="/expenses/<%= expense._id %>?_method=DELETE" method="POST">
+                                                <button type="submit"> <img
+                                                        src="https://pic.onlinewebfonts.com/thumbnails/icons_55417.svg"
+                                                        alt="Add Expense" id="deleteExpenseImage"
+                                                        class="imgBtn"></button>
+                                            </form>
+                                        </div>
+                                        <% } %>
+                                            <% }) %>
+                                                <% } %>
 
 
-    </table>
+                        </div>
+                    </table>
+                    <div id="showExpense" class="hide">
+                        <form id="expenseForm" class="" method="POST" action="/dashboard/<%= journey._id %>/expenses">
+                            <div class="row">
+                                <label>Expense Name:</label>
+                                <input type="text" name="title">
+                            </div>
+                            <div class="row">
+                                <label>Cost:</label>
+                                <input type="number" name="price">
+                            </div>
+                            <div class="row">
+                                <label>Date:</label>
+                                <input type="date" name="expenseDate">
+                            </div>
+                            <input type="submit" value="" style="background: none; border: none;">
+                            <img src="https://pic.onlinewebfonts.com/thumbnails/icons_55417.svg" alt="Add Expense"
+                                id="addExpenseImage" class="imgBtn">
+                        </form>
+                    </div>
+                    <div id="showCat" class="hide">
+                        <form id="categoryForm" method="POST" action="/dashboard/<%= journey._id %>/expenses2">
+                            <label>Category Name:</label>
+                            <input type="text" name="name">
+                            <input type="submit" value="" style="background: none; border: none;">
+                            <img src="https://pic.onlinewebfonts.com/thumbnails/icons_55417.svg" alt="Add Category"
+                                id="addCategoryImage" class="imgBtn">
+                        </form>
+                    </div>
+                    <button id="addExpenseBtn" class="button">Add Expense</button>
+                    <button id="addCategoryBtn" class="button">Add Category</button>
+                </div>
 
-    <%- include('../partials/footer') %>
+                <div class="col-12 hide" id="simulatedBudget">
+                    <h1>Simulated Budget:</h1>
+                    <table class="table table-success table-striped">
+                        <div class="row">
+                            <h4 class="col-4">Title</h4>
+                            <h4 class="col-4">Price</h4>
+                        </div>
+                        <div class="row">
+                            <% if (journey.simulatedBudget.category.length> 0) { %>
+                                <% journey.simulatedBudget.category.forEach(function(category) { %>
+                                    <% if (category) { %>
+                                        <p class="col-4">
+                                            <%= category.name %>
+                                        </p>
+                                        <p class="col-4">
+                                            <%= category.price %>
+                                        </p>
+                                        <p clas="col-4"></p>
+                                        <% } %>
+                                            <% }) %>
+                                                <% } %>
+
+                        </div>
+                    </table>
+                    <div id="showSimCat" class="hide">
+                        <form id="simCategoryForm" method="POST" action="/dashboard/<%= journey._id %>/expenses3">
+                            <label>Expense Name:</label>
+                            <input type="text" name="name">
+                            <label>Cost:</label>
+                            <input type="number" name="price">
+
+                            <input type="submit" value="" style="background: none; border: none;">
+                            <img src="https://pic.onlinewebfonts.com/thumbnails/icons_55417.svg"
+                                alt="Add Simulated Category" id="addSimCategoryImage" class="imgBtn">
+                        </form>
+                    </div>
+                    <button id="addSimCategoryBtn" class="button">Add Category</button>
+                </div>
+            </div>
+        </div>
+        <script defer src="/javascripts/dashboard.js"></script>
+        <%- include('../partials/footer') %>

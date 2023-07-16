@@ -9,15 +9,17 @@ module.exports = {
 };
 
 async function deleteExpense(req, res) {
-  // Note the cool "dot" syntax to query on the property of a subdoc
-  const journey = await Journey.findOne({ 'expenses._id': req.params.id});
-  // Rogue user!
+  const journey = await Journey.findOne({ 'user': req.user._id, 'actualBudget.expenses._id': req.params.id});
+
   if (!journey) return res.redirect('/dashboard');
-  // Remove the review using the remove method available on Mongoose arrays
-  journey.actualBudget.expenses.remove(req.params.id);
+
+    const expenseIndex = journey.actualBudget.expenses.findIndex(
+      (expense) => expense._id.toString() === req.params.id
+    );
+    journey.actualBudget.expenses.splice(expenseIndex, 1);
+
   // Save the updated movie doc
   await journey.save();
-  // Redirect back to the movie's show view
   res.redirect(`/dashboard/${journey._id}`);
 }
 
