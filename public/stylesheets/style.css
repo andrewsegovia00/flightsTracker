@@ -382,7 +382,11 @@ body>main h1:first-child {
 }
 
 #Toggle {
-  display: inline-flex;
+  display: flex;
+  margin-top: 7px;
+  justify-content: center;
+  margin-bottom: 24px;
+  align-items: center;
 }
 
 .right-toggle {
@@ -409,4 +413,14 @@ body>main h1:first-child {
 .left-header h3,
 .right-header h3 {
   font-size: 1rem;
+}
+
+.total-headers {
+  text-align: center;
+}
+
+.totalContents {
+  display: grid;
+  margin-right: 5rem;
+  justify-content: center;
 }
