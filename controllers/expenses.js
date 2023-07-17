@@ -81,7 +81,8 @@ async function createCategory(req, res) {
     res.redirect(`/dashboard/${journey._id}`);
   }
 
-  async function updateExp(req, res){
+  async function updateExp(req, res)
+  {
 
     const { title, price, expenseDate, category } = req.body;
     const journey = await Journey.findOne({ 'user': req.user._id, 'actualBudget.expenses._id': req.params.id});
@@ -91,27 +92,72 @@ async function createCategory(req, res) {
     const expenseIndex = journey.actualBudget.expenses.findIndex(
             (expense) => expense._id.toString() === req.params.id);
     const expense = journey.actualBudget.expenses[expenseIndex];
-    if(expense.title !== title && price !== '')
-    expense.title = title;
+    if(expense.title !== title && title !== '')
+    {
+      expense.title = title;
+    }
+    else
+    {
+      expense.title = expense.title
+    }
     if(expense.price !== price && price !== '')
-    expense.price = price;
+    {
+      expense.price = price;
+    }
+    else
+    {
+      expense.price = expense.price
+    }
     if(expense.expenseDate !== expenseDate)
-    expense.expenseDate = expenseDate;
+    {
+      expense.expenseDate = expenseDate ;
+    }
+
+    journey.markModified('actualBudget.expenses');
 
     await journey.save();
 
     res.redirect(`/dashboard/${journey._id}`);
   }
-  async function updateCat(){}
-  async function updateSimCat(){}
 
-  //   if (!journey) return res.redirect('/dashboard');
-  
-  //     const expenseIndex = journey.actualBudget.expenses.findIndex(
-  //       (expense) => expense._id.toString() === req.params.id
-  //     );
-  //     journey.actualBudget.expenses.splice(expenseIndex, 1);
-  
-  //   await journey.save();
-  //   res.redirect(`/dashboard/${journey._id}`);
-  // }
+  async function updateCat(){}
+
+  async function updateSimCat(req, res){
+    console.log(`we made it here 2020202020`)
+    console.log(req.body)
+    console.log(req.params.id)
+    
+
+    const { name, price } = req.body;
+    const journey = await Journey.findOne({ 'user': req.user._id, 'simulatedBudget.category._id': req.params.id});
+
+    if (!journey) return res.redirect('/dashboard')
+
+    const categoryIndex = journey.simulatedBudget.category.findIndex(
+            (cat) => cat._id.toString() === req.params.id);
+
+    const category = journey.simulatedBudget.category[categoryIndex];
+
+    if(category.name !== name && name !== '')
+    {
+      category.name = name;
+    }
+    else
+    {
+      category.name = category.name
+    }
+    if(category.price !== price && price !== '')
+    {
+      category.price = price;
+    }
+    else
+    {
+      category.price = category.price
+    }
+
+    journey.markModified('actualBudget.expenses');
+
+    await journey.save();
+
+    res.redirect(`/dashboard/${journey._id}`);
+  }

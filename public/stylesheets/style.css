@@ -1,6 +1,7 @@
 body {
+  font-family: 'Poppins', sans-serif;
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
 }
 
 a {
@@ -9,7 +10,8 @@ a {
 
 * {
   box-sizing: border-box;
-  font-family: Helvetica;
+  font-family: 'Poppins', sans-serif;
+  /* font-family: Helvetica; */
   color: #424748;
 }
 
@@ -207,33 +209,6 @@ hr {
   display: none;
 }
 
-.imgBtn {
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  border: none;
-  border-radius: 20px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  /* Move this line after the background-size property */
-  outline: none;
-}
-
-.btn-container {
-  display: flex;
-  gap: 10px;
-  border: none;
-}
-
-.update-btn {
-  background-image: url("https://cdn2.iconfinder.com/data/icons/daily-use/600/pencil-512.png");
-}
-
-.delete-btn {
-  background-image: url("https://cdn-icons-png.flaticon.com/512/1843/1843344.png");
-}
-
 .popUp {
   position: absolute;
   top: 50%;
@@ -272,4 +247,126 @@ hr {
 .plusCatImg {
   height: 1rem;
   width: 1rem;
+}
+
+.container-header {
+  width: auto;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2px
+}
+
+.left-header {
+  background-color: #0094FF;
+  color: #F5F5F7;
+  padding: 10px;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.right-header {
+  background-color: #0094FF;
+  color: #F5F5F7;
+  padding: 10px;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.table-header {
+  background-color: #D9D9D9;
+  border: 1px #D9D9D9;
+  border-radius: 10px 10px 0px 0px;
+  padding-top: 10px;
+  font-size: 10px;
+  justify-content: center;
+  display: flex;
+
+}
+
+.table-header h4 {
+  font-size: 15px;
+}
+
+.table-content {
+  height: auto;
+  width: auto;
+  border: 2px solid #D9D9D9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-bottom: 20px; */
+  display: flex;
+}
+
+.table {
+  margin-bottom: 20px;
+
+}
+
+#showUpdateModal {
+  /* background: none; */
+  border: none;
+
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+  border: none;
+  /* border-radius: 20px; */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  outline: none;
+  background-image: url("../images/Edit.svg");
+}
+
+#showDeleteModal {
+  border: none;
+
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+  border: none;
+  /* border-radius: 20px; */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  outline: none;
+  background-image: url("../images/Trash.svg");
+}
+
+.btn-container {
+  display: flex;
+  gap: 10px;
+  border: none;
+}
+
+/* 
+.imgBtn {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  border: none;
+  /* border-radius: 20px; 
+background-size: contain;
+background-repeat: no-repeat;
+background-color: transparent;
+/* Move this line after the background-size property 
+outline: none;
+} 
+*/
+
+.addingBtns {
+  border: 1px solid #0094FF;
+  background-color: #0094FF;
+  color: #FFFFFF;
+  padding: 5px 20px 5px 20px;
+  margin-right: 10px;
+  border-radius: 3px;
+  font-size: 1rem;
+}
+
+.addingBtns:hover {
+  border: 1px solid #0094FF;
+  background-color: #FFFFFF;
+  color: #0094FF;
 }
