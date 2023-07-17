@@ -27,18 +27,48 @@
                                             <%= expense.expenseDate.toLocaleDateString('en-US') %>
                                         </p>
                                         <div class="col-3 btn-container">
-                                            <form action="/expenses/<%= expense._id %>?_method=UPDATE" method="POST">
-                                                <button type="submit"> <img
-                                                        src="https://cdn2.iconfinder.com/data/icons/daily-use/600/pencil-512.png"
-                                                        alt="Update Expense" id="updateExpenseImage"
-                                                        class="imgBtn update-btn"></button>
-                                            </form>
-                                            <form action="/expenses/<%= expense._id %>?_method=DELETE" method="POST">
-                                                <button type="submit"> <img
-                                                        src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"
-                                                        alt="Add Expense" id="deleteExpenseImage"
-                                                        class="imgBtn delete-btn"></button>
-                                            </form>
+                                            <button type="submit" id="showUpdateModal"
+                                                data-expense-id="<%= expense._id %>"> <img
+                                                    src="https://cdn2.iconfinder.com/data/icons/daily-use/600/pencil-512.png"
+                                                    alt="Update Expense" id="updateExpenseImage"
+                                                    class="imgBtn update-btn"></button>
+
+                                            <button id="showDeleteModal" data-expense-id="<%= expense._id %>">
+                                                <img src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"
+                                                    alt="Add Expense" id="deleteExpenseImage" class="imgBtn delete-btn">
+                                            </button>
+
+                                            <div id="deleteExpModal" data-expense-id="<%= expense._id %>" class="hide">
+                                                <div class="row">
+                                                    <label>Are you sure You would like to DELETE this expense?</label>
+                                                </div>
+                                                <form action="/expenses/<%= expense._id %>?_method=DELETE"
+                                                    method="POST">
+                                                    <button type="submit"> Yes </button>
+                                                    <button id="closeDelExpModal" type="button"> No </button>
+                                                </form>
+                                            </div>
+                                            <div id="editExpModal" data-expense-id="<%= expense._id %>" class="hide">
+                                                <div class="row">
+                                                    <label>Are you sure You would like to EDIT this expense?</label>
+                                                    <label>
+                                                        Expense:
+                                                    </label>
+                                                    <input type="text" name="title" placeholder="<%= expense.title %>">
+                                                    <label>
+                                                        Price:
+                                                    </label>
+                                                    <input type="number" name="price" step="0.01"
+                                                        placeholder="$<%= expense.price %>">
+                                                    <label>Date:</label>
+                                                    <input type="date" name="expenseDate"
+                                                        value="<%= expense.expenseDate.toISOString().split('T')[0] %>">
+                                                </div>
+                                                <form action="/expenses/<%= expense._id %>?_method=PUT" method="POST">
+                                                    <button type="submit"> Yes </button>
+                                                    <button id="closeDelExpModal" type="button"> No </button>
+                                                </form>
+                                            </div>
                                         </div>
                                         <% } %>
                                             <% }) %>
@@ -61,17 +91,18 @@
                                 <label>Date:</label>
                                 <input type="date" name="expenseDate">
                             </div>
-                            <button id="expenseCloseBtn">Cancel</button>
+                            <button type="button" id="expenseCloseBtn">Cancel</button>
                             <input type="submit" value="Save">
                         </form>
                     </div>
 
                     <div id="showCat" class="hide">
                         <form id="categoryForm" method="POST" action="/dashboard/<%= journey._id %>/expenses2">
-                            <label>Category Name:</label>
-                            <input type="text" name="name" placeholder="Name">
-                            <input type="submit" value="" style="background: none; border: none;">
-                            <button id="categoryABCloseBtn">Cancel</button>
+                            <div class="row">
+                                <label>Category Name:</label>
+                                <input type="text" name="name" placeholder="Name">
+                            </div>
+                            <button type="button" id="categoryABCloseBtn">Cancel</button>
                             <input type="submit" value="Save">
                         </form>
                     </div>
@@ -84,20 +115,72 @@
                     <h1>Simulated Budget:</h1>
                     <table>
                         <div class="row">
-                            <h4 class="col-4">Title</h4>
-                            <h4 class="col-4">Price</h4>
+                            <h4 class="col-3">Title</h4>
+                            <h4 class="col-3">Percentage</h4>
+                            <h4 class="col-3">Price</h4>
                         </div>
                         <div class="row">
                             <% if (journey.simulatedBudget.category.length> 0) { %>
                                 <% journey.simulatedBudget.category.forEach(function(category) { %>
                                     <% if (category) { %>
-                                        <p class="col-4">
+                                        <p class="col-3">
                                             <%= category.name %>
                                         </p>
-                                        <p class="col-4">
+                                        <p class="col-3">
+                                            <%= ((category.price / 1000)*100) %>%
+                                        </p>
+                                        <p class="col-3">
                                             <%= category.price %>
                                         </p>
-                                        <p clas="col-4"></p>
+                                        <div class="col-3 btn-container">
+                                            <button id="showUpdateSimCatForm" type="submit"
+                                                data-expense-id="<%= category._id %>">
+                                                <img src="https://cdn2.iconfinder.com/data/icons/daily-use/600/pencil-512.png"
+                                                    alt="Update Expense" id="updateExpenseImage"
+                                                    class="imgBtn update-btn">
+                                            </button>
+
+                                            <button id="showDelSimCatForm" type="submit"
+                                                data-expense-id="<%= category._id %>">
+                                                <img src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"
+                                                    alt="Delete Category" id="deleteCategoryImage"
+                                                    class="imgBtn delete-btn">
+                                            </button>
+
+                                            <div id="deleteSimCatModal" data-expense-id="<%= category._id %>"
+                                                class="hide">
+                                                <div class="row">
+                                                    <label>Are you sure You would like to DELETE this category?</label>
+                                                </div>
+                                                <form action="/categories/<%= category._id %>?_method=DELETE"
+                                                    method="POST">
+                                                    <button type="submit"> Yes </button>
+                                                    <button id="closeDelSimCatModal" type="button"> No </button>
+                                                </form>
+                                            </div>
+
+                                            <div id="editSimCatModal" data-expense-id="<%= category._id %>"
+                                                class="hide">
+                                                <div class="row">
+                                                    <label>Are you sure you would like to EDIT this category?</label>
+                                                    <label>
+                                                        Name
+                                                    </label>
+                                                    <input placeholder="<%= category.name %>">
+                                                    <label>
+                                                        Price
+                                                    </label>
+                                                    <input placeholder="<%= category.price %>">
+                                                </div>
+                                                <form action="/categories/<%= category._id %>?_method=PUT"
+                                                    method="POST">
+                                                    <button type="submit"> Yes </button>
+                                                    <button id="closeEditSimCatModal" type="button"> No </button>
+                                                </form>
+                                            </div>
+
+                                        </div>
+
                                         <% } %>
                                             <% }) %>
                                                 <% } %>
@@ -105,22 +188,22 @@
                         </div>
                     </table>
                     <div id="showSimCat" class="hide">
-                        <button id="categorySBCloseBtn">&times;</button>
-
                         <form id="simCategoryForm" method="POST" action="/dashboard/<%= journey._id %>/expenses3">
-                            <label>Expense Name:</label>
-                            <input type="text" name="name">
-                            <label>Cost:</label>
-                            <input type="number" name="price">
-
-                            <input type="submit" value="" style="background: none; border: none;">
-                            <img src="https://pic.onlinewebfonts.com/thumbnails/icons_55417.svg"
-                                alt="Add Simulated Category" id="addSimCategoryImage" class="imgBtn">
+                            <div class="row">
+                                <label>Category:</label>
+                                <input type="text" name="name" placeholder="Name">
+                            </div>
+                            <div class="row">
+                                <label>Spending:</label>
+                                <input type="number" name="price" placeholder="$0.00">
+                            </div>
+                            <button type="button" id="simCategoryABCloseBtn">Cancel</button>
+                            <input type="submit" value="Add">
                         </form>
                     </div>
                     <button id="addSimCategoryBtn" class="button">
-                        <img src="https://cdn-icons-png.flaticon.com/512/32/32339.png" alt="Add Simulated Category"
-                            id="addSimCategoryImage" class="imgBtn">
+                        <img class="plusCatImg" src="https://cdn-icons-png.flaticon.com/512/32/32339.png"
+                            alt="Add Simulated Category" id="addSimCategoryImage">
                         Categories</button>
                 </div>
             </div>

@@ -12,7 +12,7 @@ async function index(req, res) {
   // console.log(req.body)
   // const journeys = await Journey.findById(req.user._id);
   const journeys = await Journey.find({ user: req.user._id });
-  console.log(journeys);
+  // console.log(journeys);
   res.render('dashboard/index', { title: 'My Journeys', journeys: journeys });
 }
 

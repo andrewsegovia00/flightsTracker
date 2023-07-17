@@ -5,7 +5,11 @@ module.exports = {
   createCategory,
   createCategory2,
   // Add this export
-  delete: deleteExpense
+  delete: deleteExpense,
+  deleteCat: deleteCategories,
+  updateExp,
+  updateCat,
+  updateSimCat,
 };
 
 async function deleteExpense(req, res) {
@@ -17,6 +21,20 @@ async function deleteExpense(req, res) {
       (expense) => expense._id.toString() === req.params.id
     );
     journey.actualBudget.expenses.splice(expenseIndex, 1);
+
+  await journey.save();
+  res.redirect(`/dashboard/${journey._id}`);
+}
+
+async function deleteCategories(req, res) {
+  const journey = await Journey.findOne({ 'user': req.user._id, 'simulatedBudget.category._id': req.params.id});
+
+  if (!journey) return res.redirect('/dashboard');
+
+    const categoryIndex = journey.simulatedBudget.category.findIndex(
+      (category) => category._id.toString() === req.params.id
+    );
+    journey.simulatedBudget.category.splice(categoryIndex, 1);
 
   await journey.save();
   res.redirect(`/dashboard/${journey._id}`);
@@ -62,3 +80,7 @@ async function createCategory(req, res) {
     }
     res.redirect(`/dashboard/${journey._id}`);
   }
+
+  async function updateExp(){}
+  async function updateCat(){}
+  async function updateSimCat(){}

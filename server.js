@@ -49,6 +49,7 @@ app.use(function (req, res, next) {
 app.use('/', indexRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/', expensesRouter);
+// app.use('/', expensesRouter);
 // app.use('/', categoriesRouter);
 // app.use('/', actualBudgetsRouter);
 // app.use('/', simulatedBudgetsRouter);

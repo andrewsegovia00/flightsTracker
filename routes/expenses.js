@@ -12,4 +12,6 @@ router.post('/dashboard/:id/expenses3', ensureLoggedIn, expensesCtrl.createCateg
 // DELETE /reviews
 router.delete('/expenses/:id', ensureLoggedIn, expensesCtrl.delete);
 
+router.delete('/categories/:id', ensureLoggedIn, expensesCtrl.deleteCat);
+
 module.exports = router;
