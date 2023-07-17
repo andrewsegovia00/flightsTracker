@@ -1,7 +1,6 @@
 body {
   font-family: 'Poppins', sans-serif;
   padding: 50px;
-  /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
 }
 
 a {
@@ -11,7 +10,6 @@ a {
 * {
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-  /* font-family: Helvetica; */
   color: #424748;
 }
 
@@ -250,26 +248,32 @@ hr {
 }
 
 .container-header {
-  width: auto;
+  display: flex;
   height: auto;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   gap: 2px
 }
 
 .left-header {
-  background-color: #0094FF;
-  color: #F5F5F7;
-  padding: 10px;
   border-radius: 10px 0px 0px 10px;
 }
 
 .right-header {
+  border-radius: 0px 10px 10px 0px;
+}
+
+.left-header,
+.right-header {
   background-color: #0094FF;
   color: #F5F5F7;
   padding: 10px;
-  border-radius: 0px 10px 10px 0px;
+  /* align-items: center; */
+  text-align: center;
+}
+
+.left-header h3,
+.right-header h3 {
+  font-size: 1rem;
+
 }
 
 .table-header {
@@ -294,7 +298,6 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin-bottom: 20px; */
   display: flex;
 }
 
@@ -304,14 +307,12 @@ hr {
 }
 
 #showUpdateModal {
-  /* background: none; */
   border: none;
 
   width: 1rem;
   height: 1rem;
   cursor: pointer;
   border: none;
-  /* border-radius: 20px; */
   background-size: contain;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -326,7 +327,6 @@ hr {
   height: 1rem;
   cursor: pointer;
   border: none;
-  /* border-radius: 20px; */
   background-size: contain;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -339,21 +339,6 @@ hr {
   gap: 10px;
   border: none;
 }
-
-/* 
-.imgBtn {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  border: none;
-  /* border-radius: 20px; 
-background-size: contain;
-background-repeat: no-repeat;
-background-color: transparent;
-/* Move this line after the background-size property 
-outline: none;
-} 
-*/
 
 .addingBtns {
   border: 1px solid #0094FF;
@@ -369,4 +354,59 @@ outline: none;
   border: 1px solid #0094FF;
   background-color: #FFFFFF;
   color: #0094FF;
+}
+
+.title {
+  font-size: 2rem;
+  color: black;
+}
+
+#journeyTitle {
+  font-weight: 600;
+  color: black;
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+body>main h1:first-child {
+  margin-bottom: 0px;
+  font-size: 2rem;
+
+}
+
+.iconClass {
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+#Toggle {
+  display: inline-flex;
+}
+
+.right-toggle {
+  border-radius: 0px 8px 8px 0px;
+  background-color: #F5F5F7;
+  color: black;
+  border: 2px solid #0094FF;
+}
+
+.left-toggle {
+  border-radius: 8px 0px 0px 8px;
+  background-color: #0094FF;
+  color: #F5F5F7;
+  text-decoration: underline;
+  border: 2px solid #0094FF;
+}
+
+.left-toggle,
+.right-toggle {
+  text-align: center;
+  padding: 10px 25px 10px 25px;
+}
+
+.left-header h3,
+.right-header h3 {
+  font-size: 1rem;
 }

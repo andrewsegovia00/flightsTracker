@@ -25,7 +25,7 @@
 
 <body>
     <nav>
-        <a href="/dashboard" <%- title==='All Movies' ? 'class="active"' : '' %>>ALL JOURNEYS</a>
+        <a href="/dashboard">ALL JOURNEYS</a>
         <% if (user) { %>
             <a href="/logout">LOG OUT</a>
             <% } else { %>
@@ -33,6 +33,3 @@
                 <% } %>
     </nav>
     <main>
-        <h1>
-            <%= title %>
-        </h1>
