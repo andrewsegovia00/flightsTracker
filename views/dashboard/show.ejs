@@ -2,11 +2,11 @@
 <%- include('../partials/header') %>
     <div class="container">
         <h1 id="journeyTitle">
-            <img src="https://icons.veryicon.com/png/o/miscellaneous/arrows/go-back-2.png" class="iconClass" />
+            <img src="../../public/images/backArrow.png" class="iconClass" />
             My Trip: <%= journey.destination.toUpperCase() %>
         </h1>
         <div class="row mt-3">
-            <div class="col-4" id="dashboardTotal">
+            <div class="col-4 border border-primary" id="dashboardTotal">
                 <div id="Toggle">
                     <div class="left-toggle">
                         Numbers
@@ -18,46 +18,104 @@
                 <div id="ActTotals">
                     <h4 class="total-headers">Actual Budget</h4>
                     <div class="totalContents">
-                        <h6 class="">
-                            Food
-                        </h6>
-                        <h6 class="">
-                            Accomodation
-                        </h6>
-                        <h6 class="">
-                            Airfare
-                        </h6>
-                        <h6 class="">
-                            Transportation
-                        </h6>
-                        <h6 class="">
-                            Activities
-                        </h6>
+                        <div class="total-indiv-count">
+                            <h5>
+                                Total:
+                            </h5>
+                            <h5 class="amountIndivCount">
+                                $10000
+                            </h5>
+                        </div>
+                        <div class="total-indiv-count">
+                            <h6 class="">
+                                Accomodation
+                            </h6>
+                            <h6 class="amountIndivCount">
+                                $100
+                            </h6>
+                        </div>
+                        <div class="total-indiv-count">
+                            <h6 class="">
+                                Airfare
+                            </h6>
+                            <h6 class="amountIndivCount">
+                                $100
+                            </h6>
+                        </div>
+                        <div class="total-indiv-count">
+                            <h6 class="">
+                                Transportation
+                            </h6>
+                            <h6 class="amountIndivCount">
+                                $100
+                            </h6>
+                        </div>
+                        <div class="total-indiv-count">
+                            <h6 class="">
+                                Activities
+                            </h6>
+                            <h6 class="amountIndivCount">
+                                $100
+                            </h6>
+                        </div>
                     </div>
                 </div>
                 <div id="SimTotals">
                     <h4 class="total-headers">Simulated Budget</h4>
                     <div class="totalContents">
-                        <div class="">
-                            Food
+                        <div class="total-indiv-count">
+                            <h5>
+                                Total:
+                            </h5>
+                            <h5 class="amountIndivCount">
+                                $10000
+                            </h5>
                         </div>
-                        <h6 class="">
-                            Accomodation
-                        </h6>
-                        <h6 class="">
-                            Airfare
-                        </h6>
-                        <h6 class="">
-                            Transportation
-                        </h6>
-                        <h6 class="">
-                            Activities
-                        </h6>
+                        <div class="total-indiv-count">
+                            <h6 class="">
+                                Food
+                            </h6>
+                            <h6 class="amountIndivCount">
+                                $100
+                            </h6>
+                        </div>
+                        <div class="total-indiv-count">
+                            <h6 class="">
+                                Accomodation
+                            </h6>
+                            <h6 class="amountIndivCount">
+                                $100
+                            </h6>
+                        </div>
+                        <div class="total-indiv-count">
+                            <h6 class="">
+                                Airfare
+                            </h6>
+                            <h6 class="amountIndivCount">
+                                $100
+                            </h6>
+                        </div>
+                        <div class="total-indiv-count">
+                            <h6 class="">
+                                Transportation
+                            </h6>
+                            <h6 class="amountIndivCount">
+                                $100
+                            </h6>
+                        </div>
+                        <div class="total-indiv-count">
+                            <h6 class="">
+                                Activities
+                            </h6>
+                            <h6 class="amountIndivCount">
+                                $100
+                            </h6>
+                        </div>
                     </div>
                 </div>
 
             </div>
-            <div class="col-8" id="dashboardudget">
+            <div class="col-8 border border-dark" id="dashboardudget">
                 <div class="col-12" id="ActualBudget">
                     <div class="row">
                         <h3 class="title">ACTUAL EXPENSES</h3>

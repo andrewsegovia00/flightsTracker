@@ -1,6 +1,6 @@
 body {
   font-family: 'Poppins', sans-serif;
-  padding: 50px;
+  /* padding: 50px; */
 }
 
 a {
@@ -383,10 +383,11 @@ body>main h1:first-child {
 
 #Toggle {
   display: flex;
-  margin-top: 7px;
+  /* margin-top: 7px; */
   justify-content: center;
   margin-bottom: 24px;
   align-items: center;
+  /* width: max-content; */
 }
 
 .right-toggle {
@@ -421,6 +422,29 @@ body>main h1:first-child {
 
 .totalContents {
   display: grid;
-  margin-right: 5rem;
-  justify-content: center;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  /* justify-content: center; */
+}
+
+.total-indiv-count {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  margin-top: .5rem;
+}
+
+.amountIndivCount {
+  text-align: right;
+}
+
+#ActTotals,
+#SimTotals {
+  margin-top: 2rem;
+}
+
+.space {
+  display: flex;
+  justify-content: space-between;
 }
