@@ -9,9 +9,15 @@ router.post('/dashboard/:id/expenses2', ensureLoggedIn, expensesCtrl.createCateg
 
 router.post('/dashboard/:id/expenses3', ensureLoggedIn, expensesCtrl.createCategory2);
 
-// DELETE /reviews
+// DELETE 
 router.delete('/expenses/:id', ensureLoggedIn, expensesCtrl.delete);
 
-router.delete('/categories/:id', ensureLoggedIn, expensesCtrl.deleteCat);
+router.delete('/categories/:id', ensureLoggedIn, expensesCtrl.deleteSimCat);
+
+// PUT 
+
+router.put('/expenses/:id', ensureLoggedIn, expensesCtrl.updateExp);
+
+router.put('/categories/:id', ensureLoggedIn, expensesCtrl.updateSimCat);
 
 module.exports = router;

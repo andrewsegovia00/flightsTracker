@@ -6,7 +6,7 @@ module.exports = {
   createCategory2,
   // Add this export
   delete: deleteExpense,
-  deleteCat: deleteCategories,
+  deleteSimCat: deleteCategories,
   updateExp,
   updateCat,
   updateSimCat,
@@ -81,6 +81,37 @@ async function createCategory(req, res) {
     res.redirect(`/dashboard/${journey._id}`);
   }
 
-  async function updateExp(){}
+  async function updateExp(req, res){
+
+    const { title, price, expenseDate, category } = req.body;
+    const journey = await Journey.findOne({ 'user': req.user._id, 'actualBudget.expenses._id': req.params.id});
+
+    if (!journey) return res.redirect('/dashboard')
+
+    const expenseIndex = journey.actualBudget.expenses.findIndex(
+            (expense) => expense._id.toString() === req.params.id);
+    const expense = journey.actualBudget.expenses[expenseIndex];
+    if(expense.title !== title && price !== '')
+    expense.title = title;
+    if(expense.price !== price && price !== '')
+    expense.price = price;
+    if(expense.expenseDate !== expenseDate)
+    expense.expenseDate = expenseDate;
+
+    await journey.save();
+
+    res.redirect(`/dashboard/${journey._id}`);
+  }
   async function updateCat(){}
   async function updateSimCat(){}
+
+  //   if (!journey) return res.redirect('/dashboard');
+  
+  //     const expenseIndex = journey.actualBudget.expenses.findIndex(
+  //       (expense) => expense._id.toString() === req.params.id
+  //     );
+  //     journey.actualBudget.expenses.splice(expenseIndex, 1);
+  
+  //   await journey.save();
+  //   res.redirect(`/dashboard/${journey._id}`);
+  // }
