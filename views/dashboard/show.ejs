@@ -1,355 +1,384 @@
 <div class="row"><input id="switch" type="checkbox"></div>
 <%- include('../partials/header') %>
-    <!-- <div clas="logo-TitleContainer"> -->
-    <div class="journeyContainer">
-        <h1 id="journeyTitle">
-            <img src="../../public/images/backArrow.png" class="iconClass" />
-            My Trip: <%= journey.destination.toUpperCase() %>
-        </h1>
-    </div>
-    <!-- </div> -->
-    <div class="row mt-3 mainContainer">
-        <div class="col-4" id="dashboardTotal">
-            <div id="Toggle">
-                <div class="left-toggle">
-                    Numbers
-                </div>
-                <div class="right-toggle">
-                    Graphs
-                </div>
-            </div>
-            <div id="ActTotals">
-                <h4 class="total-headers">Actual Budget</h4>
-                <div class="totalContents">
-                    <div class="total-indiv-count">
-                        <h5>
-                            Total:
-                        </h5>
-                        <h5 class="amountIndivCount">
-                            $10000
-                        </h5>
-                    </div>
-                    <div class="total-indiv-count">
-                        <h6 class="">
-                            Food
-                        </h6>
-                        <h6 class="amountIndivCount">
-                            $100
-                        </h6>
-                    </div>
-                    <div class="total-indiv-count">
-                        <h6 class="">
-                            Accomodation
-                        </h6>
-                        <h6 class="amountIndivCount">
-                            $100
-                        </h6>
-                    </div>
-                    <div class="total-indiv-count">
-                        <h6 class="">
-                            Airfare
-                        </h6>
-                        <h6 class="amountIndivCount">
-                            $100
-                        </h6>
-                    </div>
-                    <div class="total-indiv-count">
-                        <h6 class="">
-                            Transportation
-                        </h6>
-                        <h6 class="amountIndivCount">
-                            $100
-                        </h6>
-                    </div>
-                    <div class="total-indiv-count">
-                        <h6 class="">
-                            Activities
-                        </h6>
-                        <h6 class="amountIndivCount">
-                            $100
-                        </h6>
-                    </div>
-                </div>
-            </div>
-            <div id="SimTotals">
-                <h4 class="total-headers">Simulated Budget</h4>
-                <div class="totalContents">
-                    <div class="total-indiv-count">
-                        <h5>
-                            Total:
-                        </h5>
-                        <h5 class="amountIndivCount">
-                            $10000
-                        </h5>
-                    </div>
-                    <div class="total-indiv-count">
-                        <h6 class="">
-                            Food
-                        </h6>
-                        <h6 class="amountIndivCount">
-                            $100
-                        </h6>
-                    </div>
-                    <div class="total-indiv-count">
-                        <h6 class="">
-                            Accomodation
-                        </h6>
-                        <h6 class="amountIndivCount">
-                            $100
-                        </h6>
-                    </div>
-                    <div class="total-indiv-count">
-                        <h6 class="">
-                            Airfare
-                        </h6>
-                        <h6 class="amountIndivCount">
-                            $100
-                        </h6>
-                    </div>
-                    <div class="total-indiv-count">
-                        <h6 class="">
-                            Transportation
-                        </h6>
-                        <h6 class="amountIndivCount">
-                            $100
-                        </h6>
-                    </div>
-                    <div class="total-indiv-count">
-                        <h6 class="">
-                            Activities
-                        </h6>
-                        <h6 class="amountIndivCount">
-                            $100
-                        </h6>
-                    </div>
-                </div>
-            </div>
-
+    <div class="background">
+        <div class="journeyContainer">
+            <a href="/dashboard" id="backIcon">
+            </a>
+            <h1 id="journeyTitle">
+                My Trip: <%= journey.destination.toUpperCase() %>
+            </h1>
+            <button id="showEditJourney">
+            </button>
         </div>
-        <div class="col-8 maindashBoard" id="dashboardudget">
-            <div class="col-12" id="ActualBudget">
-                <div class="abContainer">
-                    <div class="">
-                        <h3 class="title">ACTUAL EXPENSES</h3>
+        <div class="row mt-3 mainContainer">
+            <div class="col-4" id="dashboardTotal">
+                <div id="Toggle">
+                    <div class="left-toggle">
+                        Numbers
                     </div>
-                    <div class="container-header">
-                        <div class="left-header col-6">
-                            <h3>My Budget</h3>
-                            <h3>$300</h3>
-                        </div>
-                        <div class="right-header col-6">
-                            <h3>Remaining Budget</h3>
-                            <h3>$300</h3>
-                        </div>
+                    <div class="right-toggle">
+                        Graphs
                     </div>
-                    <h3 class="budgetTitle">Trip Expenses</h3>
-                    <div class="table">
-                        <div class="table-header">
-                            <h4 class="col-2">Title</h4>
-                            <h4 class="col-2">Price</h4>
-                            <h4 class="col-2">Date</h4>
-                            <h4 class="col-2">Category</h4>
-                            <h4 class="col-1"></h4>
-                        </div>
-                        <% if (journey.actualBudget.expenses.length> 0) { %>
-                            <% journey.actualBudget.expenses.forEach(function(expense) { %>
-                                <% if (expense) { %>
-                                    <div class="table-content">
-                                        <p class="col-2">
-                                            <%= expense.title %>
-                                        </p>
-                                        <p class="col-2">
-                                            $<%= expense.price %>
-                                        </p>
-                                        <p class="col-2">
-                                            <%= expense.expenseDate.toLocaleDateString('en-US') %>
-                                        </p>
-                                        <p class="col-2">Empty Category</p>
-                                        <div class="col-1 btn-container">
-                                            <button type="submit" id="showUpdateModal"
-                                                data-expense-id="<%= expense._id %>">
-                                            </button>
-
-                                            <button id="showDeleteModal" data-expense-id="<%= expense._id %>">
-                                            </button>
-
-                                            <div id="deleteExpModal" data-expense-id="<%= expense._id %>" class="hide">
-                                                <div class="row">
-                                                    <label>Are you sure You would like to DELETE this expense?</label>
-                                                </div>
-                                                <form action="/expenses/<%= expense._id %>?_method=DELETE"
-                                                    method="POST">
-                                                    <button type="submit"> Yes </button>
-                                                    <button id="closeDelExpModal" type="button"> No </button>
-                                                </form>
-                                            </div>
-                                            <div id="editExpModal" data-expense-id="<%= expense._id %>" class="hide">
-                                                <div class="row">
-                                                    <label>Are you sure You would like to EDIT this expense?</label>
-                                                </div>
-                                                <form action="/expenses/<%= expense._id %>?_method=PUT" method="POST">
-                                                    <div>
-                                                        <label>
-                                                            Expense:
-                                                        </label>
-                                                        <input type="text" name="title"
-                                                            placeholder="<%= expense.title %>">
-                                                    </div>
-                                                    <div>
-                                                        <label>
-                                                            Price:
-                                                        </label>
-                                                        <input type="number" name="price" step="0.01"
-                                                            placeholder="$<%= expense.price %>">
-                                                    </div>
-                                                    <div>
-                                                        <label>Date:</label>
-                                                        <input type="date" name="expenseDate"
-                                                            value="<%= expense.expenseDate.toISOString().split('T')[0] %>">
-                                                    </div>
-                                                    <button type="submit"> Yes </button>
-                                                    <button id="closeDelExpModal" type="button"> No </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <% } %>
-                                        <% }) %>
-                                            <% } %>
-                    </div>
-                    <div id="showExpense" class="hide">
-                        <form id="expenseForm" class="" method="POST" action="/dashboard/<%= journey._id %>/expenses">
-                            <div class="row">
-                                <label>Expense:</label>
-                                <input type="text" name="title" placeholder="Title">
-                            </div>
-                            <div class="row">
-                                <label>Price:</label>
-                                <input type="number" name="price" step="0.01" placeholder="$0.00">
-                            </div>
-                            <div class="row">
-                                <label>Date:</label>
-                                <input type="date" name="expenseDate">
-                            </div>
-                            <button type="button" id="expenseCloseBtn">Cancel</button>
-                            <input type="submit" value="Save">
-                        </form>
-                    </div>
-
-                    <div id="showCat" class="hide">
-                        <form id="categoryForm" method="POST" action="/dashboard/<%= journey._id %>/expenses2">
-                            <div class="row">
-                                <label>Category Name:</label>
-                                <input type="text" name="name" placeholder="Name">
-                            </div>
-                            <button type="button" id="categoryABCloseBtn">Cancel</button>
-                            <input type="submit" value="Save">
-                        </form>
-                    </div>
-
-                    <button id="addExpenseBtn" class="addingBtns">+ Expense</button>
-                    <button id="addCategoryBtn" class="addingBtns">+ Categories</button>
                 </div>
+                <div id="ActTotals">
+                    <h4 class="total-headers">Actual Budget</h4>
+                    <div class="totalContents">
+                        <div class="total-indiv-count">
+                            <h5>
+                                Total:
+                            </h5>
+                            <h5 class="amountIndivCount">
+                                $10000
+                            </h5>
+                        </div>
+                        <div class="total-indiv-count">
+                            <h6 class="">
+                                Food
+                            </h6>
+                            <h6 class="amountIndivCount">
+                                $100
+                            </h6>
+                        </div>
+                        <div class="total-indiv-count">
+                            <h6 class="">
+                                Accomodation
+                            </h6>
+                            <h6 class="amountIndivCount">
+                                $100
+                            </h6>
+                        </div>
+                        <div class="total-indiv-count">
+                            <h6 class="">
+                                Airfare
+                            </h6>
+                            <h6 class="amountIndivCount">
+                                $100
+                            </h6>
+                        </div>
+                        <div class="total-indiv-count">
+                            <h6 class="">
+                                Transportation
+                            </h6>
+                            <h6 class="amountIndivCount">
+                                $100
+                            </h6>
+                        </div>
+                        <div class="total-indiv-count">
+                            <h6 class="">
+                                Activities
+                            </h6>
+                            <h6 class="amountIndivCount">
+                                $100
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+                <div id="SimTotals">
+                    <h4 class="total-headers">Simulated Budget</h4>
+                    <div class="totalContents">
+                        <div class="total-indiv-count">
+                            <h5>
+                                Total:
+                            </h5>
+                            <h5 class="amountIndivCount">
+                                $10000
+                            </h5>
+                        </div>
+                        <div class="total-indiv-count">
+                            <h6 class="">
+                                Food
+                            </h6>
+                            <h6 class="amountIndivCount">
+                                $100
+                            </h6>
+                        </div>
+                        <div class="total-indiv-count">
+                            <h6 class="">
+                                Accomodation
+                            </h6>
+                            <h6 class="amountIndivCount">
+                                $100
+                            </h6>
+                        </div>
+                        <div class="total-indiv-count">
+                            <h6 class="">
+                                Airfare
+                            </h6>
+                            <h6 class="amountIndivCount">
+                                $100
+                            </h6>
+                        </div>
+                        <div class="total-indiv-count">
+                            <h6 class="">
+                                Transportation
+                            </h6>
+                            <h6 class="amountIndivCount">
+                                $100
+                            </h6>
+                        </div>
+                        <div class="total-indiv-count">
+                            <h6 class="">
+                                Activities
+                            </h6>
+                            <h6 class="amountIndivCount">
+                                $100
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-
-            <div class="col-12 hide" id="simulatedBudget">
-                <h1>Simulated Budget:</h1>
-                <table>
-                    <div class="row">
-                        <h4 class="col-3">Title</h4>
-                        <h4 class="col-3">Percentage</h4>
-                        <h4 class="col-3">Price</h4>
-                    </div>
-                    <div class="row">
-                        <% if (journey.simulatedBudget.category.length> 0) { %>
-                            <% journey.simulatedBudget.category.forEach(function(category) { %>
-                                <% if (category) { %>
-                                    <p class="col-3">
-                                        <%= category.name %>
-                                    </p>
-                                    <p class="col-3">
-                                        <%= ((category.price / 1000)*100) %>%
-                                    </p>
-                                    <p class="col-3">
-                                        <%= category.price %>
-                                    </p>
-                                    <div class="col-3 btn-container">
-                                        <button id="showUpdateSimCatForm" type="submit"
-                                            data-expense-id="<%= category._id %>">
-                                            <img src="https://cdn2.iconfinder.com/data/icons/daily-use/600/pencil-512.png"
-                                                alt="Update Expense" id="updateExpenseImage" class="imgBtn update-btn">
-                                        </button>
-
-                                        <button id="showDelSimCatForm" type="submit"
-                                            data-expense-id="<%= category._id %>">
-                                            <img src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"
-                                                alt="Delete Category" id="deleteCategoryImage"
-                                                class="imgBtn delete-btn">
-                                        </button>
-
-                                        <div id="deleteSimCatModal" data-expense-id="<%= category._id %>" class="hide">
-                                            <div class="row">
-                                                <label>Are you sure You would like to DELETE this category?</label>
-                                            </div>
-                                            <form action="/categories/<%= category._id %>?_method=DELETE" method="POST">
-                                                <button type="submit"> Yes </button>
-                                                <button id="closeDelSimCatModal" type="button"> No </button>
-                                            </form>
-                                        </div>
-
-                                        <div id="editSimCatModal" data-expense-id="<%= category._id %>" class="hide">
-                                            <div class="row">
-                                                <label>Are you sure you would like to EDIT this category?</label>
-                                            </div>
-                                            <form action="/categories/<%= category._id %>?_method=PUT" method="POST">
-                                                <div>
-                                                    <label>
-                                                        Name
-                                                    </label>
-                                                    <input type="text" name="name" placeholder="<%= category.name %>">
-                                                </div>
-                                                <div>
-                                                    <label>
-                                                        Spending
-                                                    </label>
-                                                    <input type="number" name="price" step="0.01"
-                                                        placeholder="$<%= category.price %>">
-                                                </div>
-                                                <button type="submit"> Yes </button>
-                                                <button id="closeEditSimCatModal" type="button"> No </button>
-                                            </form>
-                                        </div>
-
-                                    </div>
-
-                                    <% } %>
-                                        <% }) %>
-                                            <% } %>
-
-                    </div>
-                </table>
-                <div id="showSimCat" class="hide">
-                    <form id="simCategoryForm" method="POST" action="/dashboard/<%= journey._id %>/expenses3">
-                        <div class="row">
-                            <label>Category:</label>
-                            <input type="text" name="name" placeholder="Name">
+            <div class="col-8 maindashBoard" id="dashboardudget">
+                <div class="col-12" id="ActualBudget">
+                    <div class="abContainer">
+                        <div class="">
+                            <h3 class="title">ACTUAL EXPENSES</h3>
                         </div>
-                        <div class="row">
-                            <label>Spending:</label>
-                            <input type="number" name="price" placeholder="$0.00">
+                        <div class="container-header">
+                            <div class="left-header col-6">
+                                <h3>My Budget</h3>
+                                <h3>$300</h3>
+                            </div>
+                            <div class="right-header col-6">
+                                <h3>Remaining Budget</h3>
+                                <h3>$300</h3>
+                            </div>
                         </div>
-                        <button type="button" id="simCategoryABCloseBtn">Cancel</button>
-                        <input type="submit" value="Add">
-                    </form>
+                        <h3 class="budgetTitle">Trip Expenses</h3>
+                        <div class="table">
+                            <div class="table-header">
+                                <h4 class="col-2">Title</h4>
+                                <h4 class="col-2">Price</h4>
+                                <h4 class="col-2">Date</h4>
+                                <h4 class="col-2">Category</h4>
+                                <h4 class="col-1"></h4>
+                            </div>
+                            <% if (journey.actualBudget.expenses.length> 0) { %>
+                                <% journey.actualBudget.expenses.forEach(function(expense) { %>
+                                    <% if (expense) { %>
+                                        <div class="table-content">
+                                            <p class="col-2">
+                                                <%= expense.title %>
+                                            </p>
+                                            <p class="col-2">
+                                                $<%= expense.price %>
+                                            </p>
+                                            <p class="col-2">
+                                                <%= expense.expenseDate.toLocaleDateString('en-US') %>
+                                            </p>
+                                            <p class="col-2">Empty Category</p>
+                                            <div class="col-1 btn-container">
+                                                <button type="submit" id="showUpdateModal"
+                                                    data-expense-id="<%= expense._id %>">
+                                                </button>
+
+                                                <button id="showDeleteModal" data-expense-id="<%= expense._id %>">
+                                                </button>
+
+                                                <div id="deleteExpModal" data-expense-id="<%= expense._id %>"
+                                                    class="hide">
+                                                    <div class="row">
+                                                        <label>Are you sure You would like to DELETE this
+                                                            expense?</label>
+                                                    </div>
+                                                    <form action="/expenses/<%= expense._id %>?_method=DELETE"
+                                                        method="POST">
+                                                        <button type="submit"> Yes </button>
+                                                        <button id="closeDelExpModal" type="button"> No </button>
+                                                    </form>
+                                                </div>
+                                                <div id="editExpModal" data-expense-id="<%= expense._id %>"
+                                                    class="hide">
+                                                    <div class="row">
+                                                        <label>Are you sure You would like to EDIT this expense?</label>
+                                                    </div>
+                                                    <form action="/expenses/<%= expense._id %>?_method=PUT"
+                                                        method="POST">
+                                                        <div>
+                                                            <label>
+                                                                Expense:
+                                                            </label>
+                                                            <input type="text" name="title"
+                                                                placeholder="<%= expense.title %>">
+                                                        </div>
+                                                        <div>
+                                                            <label>
+                                                                Price:
+                                                            </label>
+                                                            <input type="number" name="price" step="0.01"
+                                                                placeholder="$<%= expense.price %>">
+                                                        </div>
+                                                        <div>
+                                                            <label>Date:</label>
+                                                            <input type="date" name="expenseDate"
+                                                                value="<%= expense.expenseDate.toISOString().split('T')[0] %>">
+                                                        </div>
+                                                        <button type="submit"> Yes </button>
+                                                        <button id="closeDelExpModal" type="button"> No </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                            <% }) %>
+                                                <% } %>
+                        </div>
+                        <div id="showExpense" class="hide">
+                            <form id="expenseForm" class="" method="POST"
+                                action="/dashboard/<%= journey._id %>/expenses">
+                                <div class="row">
+                                    <label>Expense:</label>
+                                    <input type="text" name="title" placeholder="Title">
+                                </div>
+                                <div class="row">
+                                    <label>Price:</label>
+                                    <input type="number" name="price" step="0.01" placeholder="$0.00">
+                                </div>
+                                <div class="row">
+                                    <label>Date:</label>
+                                    <input type="date" name="expenseDate">
+                                </div>
+                                <button type="button" id="expenseCloseBtn">Cancel</button>
+                                <input type="submit" value="Save">
+                            </form>
+                        </div>
+
+                        <div id="showCat" class="hide">
+                            <form id="categoryForm" method="POST" action="/dashboard/<%= journey._id %>/expenses2">
+                                <div class="row">
+                                    <label>Category Name:</label>
+                                    <input type="text" name="name" placeholder="Name">
+                                </div>
+                                <button type="button" id="categoryABCloseBtn">Cancel</button>
+                                <input type="submit" value="Save">
+                            </form>
+                        </div>
+
+                        <button id="addExpenseBtn" class="addingBtns">+ Expense</button>
+                        <button id="addCategoryBtn" class="addingBtns">+ Categories</button>
+                    </div>
                 </div>
-                <button id="addSimCategoryBtn" class="button">
-                    <img class="plusCatImg" src="https://cdn-icons-png.flaticon.com/512/32/32339.png"
-                        alt="Add Simulated Category" id="addSimCategoryImage">
-                    Categories</button>
+
+                <div class="col-12 hide" id="simulatedBudget">
+                    <div class="abContainer">
+                        <div class="">
+                            <h3 class="title">Simulated Budget</h3>
+                        </div>
+                        <div class="container-header">
+                            <div class="left-header col-6">
+                                <h3>My Budget</h3>
+                                <h3>$300</h3>
+                            </div>
+                            <div class="right-header col-6">
+                                <h3>Remaining Budget</h3>
+                                <h3>$300</h3>
+                            </div>
+                        </div>
+                        <h3 class="budgetTitle">Trip Expenses</h3>
+
+
+                        <table>
+                            <div class="row">
+                                <h4 class="col-3">Title</h4>
+                                <h4 class="col-3">Percentage</h4>
+                                <h4 class="col-3">Price</h4>
+                            </div>
+                            <div class="row">
+                                <% if (journey.simulatedBudget.category.length> 0) { %>
+                                    <% journey.simulatedBudget.category.forEach(function(category) { %>
+                                        <% if (category) { %>
+                                            <p class="col-3">
+                                                <%= category.name %>
+                                            </p>
+                                            <p class="col-3">
+                                                <%= ((category.price / 1000)*100) %>%
+                                            </p>
+                                            <p class="col-3">
+                                                <%= category.price %>
+                                            </p>
+                                            <div class="col-3 btn-container">
+                                                <button id="showUpdateSimCatForm" type="submit"
+                                                    data-expense-id="<%= category._id %>">
+                                                    <img src="https://cdn2.iconfinder.com/data/icons/daily-use/600/pencil-512.png"
+                                                        alt="Update Expense" id="updateExpenseImage"
+                                                        class="imgBtn update-btn">
+                                                </button>
+
+                                                <button id="showDelSimCatForm" type="submit"
+                                                    data-expense-id="<%= category._id %>">
+                                                    <img src="https://cdn-icons-png.flaticon.com/512/1843/1843344.png"
+                                                        alt="Delete Category" id="deleteCategoryImage"
+                                                        class="imgBtn delete-btn">
+                                                </button>
+
+                                                <div id="deleteSimCatModal" data-expense-id="<%= category._id %>"
+                                                    class="hide">
+                                                    <div class="row">
+                                                        <label>Are you sure You would like to DELETE this
+                                                            category?</label>
+                                                    </div>
+                                                    <form action="/categories/<%= category._id %>?_method=DELETE"
+                                                        method="POST">
+                                                        <button type="submit"> Yes </button>
+                                                        <button id="closeDelSimCatModal" type="button"> No </button>
+                                                    </form>
+                                                </div>
+
+                                                <div id="editSimCatModal" data-expense-id="<%= category._id %>"
+                                                    class="hide">
+                                                    <div class="row">
+                                                        <label>Are you sure you would like to EDIT this
+                                                            category?</label>
+                                                    </div>
+                                                    <form action="/categories/<%= category._id %>?_method=PUT"
+                                                        method="POST">
+                                                        <div>
+                                                            <label>
+                                                                Name
+                                                            </label>
+                                                            <input type="text" name="name"
+                                                                placeholder="<%= category.name %>">
+                                                        </div>
+                                                        <div>
+                                                            <label>
+                                                                Spending
+                                                            </label>
+                                                            <input type="number" name="price" step="0.01"
+                                                                placeholder="$<%= category.price %>">
+                                                        </div>
+                                                        <button type="submit"> Yes </button>
+                                                        <button id="closeEditSimCatModal" type="button"> No </button>
+                                                    </form>
+                                                </div>
+
+                                            </div>
+
+                                            <% } %>
+                                                <% }) %>
+                                                    <% } %>
+
+                            </div>
+                        </table>
+                        <div id="showSimCat" class="hide">
+                            <form id="simCategoryForm" method="POST" action="/dashboard/<%= journey._id %>/expenses3">
+                                <div class="row">
+                                    <label>Category:</label>
+                                    <input type="text" name="name" placeholder="Name">
+                                </div>
+                                <div class="row">
+                                    <label>Spending:</label>
+                                    <input type="number" name="price" placeholder="$0.00">
+                                </div>
+                                <button type="button" id="simCategoryABCloseBtn">Cancel</button>
+                                <input type="submit" value="Add">
+                            </form>
+                        </div>
+                        <button id="addSimCategoryBtn" class="addingBtns">+ Categories</button>
+                    </div>
+                </div>
+
             </div>
         </div>
-
-    </div>
-    <div id="overlay"></div>
-    <script defer src="/javascripts/dashboard.js"></script>
-    <%- include('../partials/footer') %>
+        <div id="overlay"></div>
+        <script defer src="/javascripts/dashboard.js"></script>
+        <%- include('../partials/footer') %>
