@@ -809,29 +809,11 @@ main {
   justify-content: space-between;
 }
 
-.destCardContainerDash {
-  max-width: 400px;
-  height: 10rem;
-  border-radius: 12px;
-  position: relative;
-  width: 350px;
-  background-image: url("https://media.istockphoto.com/id/1192780580/photo/fuji-mountain-red-maple-tree-and-fisherman-boat-with-morning-mist-in-autumn-kawaguchiko-lake.jpg?s=612x612&w=0&k=20&c=-FiZmc4qf2lVWlHf1WxysjoPJN7doER4qRmoPDLJpSw=");
-}
-
-
-.destCardContainer {
-  max-width: 400px;
-  height: 10rem;
-  border-radius: 12px;
-  position: relative;
-  background-image: url("https://media.istockphoto.com/id/1192780580/photo/fuji-mountain-red-maple-tree-and-fisherman-boat-with-morning-mist-in-autumn-kawaguchiko-lake.jpg?s=612x612&w=0&k=20&c=-FiZmc4qf2lVWlHf1WxysjoPJN7doER4qRmoPDLJpSw=");
-}
-
 .destTitle {
   font-size: 1.3rem;
   position: absolute;
   margin: 10px 0px 0px 10px;
-  color: white;
+  color: black;
   font-weight: bolder;
 }
 
@@ -931,10 +913,13 @@ main {
 }
 
 .toggleTop {
-  position: fixed;
-  margin-right: 2rem;
-  right: 0;
+  /* position: fixed; */
+  /* margin-right: 2rem; */
+  /* right: 0; */
+
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .rightArrow {
@@ -977,4 +962,73 @@ main {
   justify-content: center;
   align-items: center;
   column-count: 2;
+}
+
+#Italy {
+  background-image: url("https://media.architecturaldigest.com/photos/5903ad5c1732ef7d3c2b9e38/4:3/w_2663,h_1997,c_limit/5%20Seaside%20Towns%20in%20Italy.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#Philippines {
+  background-image: url("https://cdn.kimkim.com/files/a/images/fe3bdbe6f263c864e483ee4068a326e1c91cb5f3/original-eb0b37bdd74c3163951bf9a3dcfb6ffe.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#Bali {
+  background-image: url("https://a.cdn-hotels.com/gdcs/production143/d1112/c4fedab1-4041-4db5-9245-97439472cf2c.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#Sweden {
+  background-image: url("https://assets3.thrillist.com/v1/image/2706821/792x529/scale;webp=auto;jpeg_quality=60;progressive.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#Japan {
+  background-image: url("https://media.istockphoto.com/id/876560704/photo/fuji-japan-in-spring.jpg?s=612x612&w=0&k=20&c=j1VZlzfNcsjQ4q4yHXJEohSrBZJf6nUhh2_smM4eioQ=");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#CentralAmerica {
+  background-image: url("https://s3-us-west-1.amazonaws.com/contentlab.studiod/getty/73459b2547b644a49fb1f5318d8378de.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#China {
+  background-image: url("https://cdn.britannica.com/89/179589-138-3EE27C94/Overview-Great-Wall-of-China.jpg?w=800&h=450&c=crop");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#Denmark {
+  background-image: url("https://static.independent.co.uk/2023/04/19/13/iStock-971381072.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+.destCardContainerDash {
+  max-width: 400px;
+  height: 10rem;
+  border-radius: 12px;
+  position: relative;
+  width: 350px;
+  background-image: url("https://t3.ftcdn.net/jpg/04/87/13/40/360_F_487134056_ttJAg56QAcB15RKhdOQUKPXGxwGt5xqB.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+.destCardContainer {
+  max-width: 400px;
+  height: 10rem;
+  border-radius: 12px;
+  position: relative;
+  /* background-image: url("https://media.istockphoto.com/id/1192780580/photo/fuji-mountain-red-maple-tree-and-fisherman-boat-with-morning-mist-in-autumn-kawaguchiko-lake.jpg?s=612x612&w=0&k=20&c=-FiZmc4qf2lVWlHf1WxysjoPJN7doER4qRmoPDLJpSw="); */
 }
