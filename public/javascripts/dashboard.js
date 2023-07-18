@@ -215,8 +215,8 @@ showDelExpModal.forEach(button => {
 noDeleteExp.forEach(cancel => {
     cancel.addEventListener('click', (event) => {
       const cancelDel = event.currentTarget;
-      cancelDel.parentElement.classList.remove('popUp'); 
-      cancelDel.parentElement.classList.add('hide');
+      cancelDel.parentElement.parentElement.parentElement.classList.remove('popUp'); 
+      cancelDel.parentElement.parentElement.parentElement.classList.add('hide');
       showOverlay.classList.remove('active');
     });
   });
@@ -231,8 +231,8 @@ showUpdateExpModal.forEach(button => {
 noEditExp.forEach(cancel => {
     cancel.addEventListener('click', (event) => {
       const cancelEdit = event.currentTarget;
-      cancelEdit.parentElement.classList.remove('popUp'); 
-      cancelEdit.parentElement.classList.add('hide');
+      cancelEdit.parentElement.parentElement.parentElement.classList.remove('popUp'); 
+      cancelEdit.parentElement.parentElement.parentElementclassList.add('hide');
       showOverlay.classList.remove('active');
     });
   });
