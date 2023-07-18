@@ -1,5 +1,21 @@
-<form id="add-performer-form" action="/dashboard" method="POST">
-    <label>Name:</label>
-    <input type="text" name="destination">
-    <input type="submit" value="Add Journey">
-</form>
+<div class="popUp">
+    <form id="add-performer-form" action="/dashboard" method="POST">
+        <div>
+            <label>Destination:</label>
+            <input type="text" name="destination">
+        </div>
+        <div>
+            <label>Simulated Budget</label>
+            <input type="number" name="price" step="0.01" placeholder="$0.00">
+        </div>
+        <div class="popUpBtns">
+            <a href="/dashboard">
+                <button class="CancelPopUp" id="closeDelExpModal" type="button"> Cancel
+                </button>
+            </a>
+            <input type="submit" value="Add Journey" class="confirmsPopUp">
+        </div>
+    </form>
+
+</div>
+<div id="overlay-Journey"></div>

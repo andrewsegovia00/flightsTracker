@@ -81,12 +81,12 @@ nav>a.active {
 #expenseForm *,
 #add-performer-form * {
   font-size: 20px;
-  padding: 5px;
+  /* padding: 5px; */
   border-radius: 5px;
 }
 
 #new-form input[type="submit"] {
-  grid-column: span 2;
+  /* grid-column: span 2; */
   width: 10rem;
   margin-left: auto;
 }
@@ -95,10 +95,10 @@ table {
   font-size: 20px;
 }
 
-#list td:nth-child(2),
+/* #list td:nth-child(2),
 #list td:nth-child(3) {
   min-width: 100px;
-}
+} */
 
 #list a {
   border-radius: 4px;
@@ -125,15 +125,15 @@ table {
 #add-review-form,
 #add-performer-form {
   display: grid;
-  grid-template-columns: auto auto;
+  /* grid-template-columns: auto auto; */
   grid-gap: 1rem;
   margin-bottom: 2rem;
 }
 
 #add-review-form input[type="submit"],
 #add-performer-form input[type="submit"] {
-  width: 10rem;
-  grid-column: 2 / 3;
+  /* width: 10rem; */
+  /* grid-column: 2 / 3; */
 }
 
 hr {
@@ -205,6 +205,19 @@ hr {
   bottom: 0;
   pointer-events: none;
   backdrop-filter: blur(2px);
+}
+
+#overlay-Journey {
+  position: fixed;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  backdrop-filter: blur(4px);
+  opacity: 1;
+  pointer-events: all;
 }
 
 #overlay.active {
@@ -621,6 +634,18 @@ main {
   padding: 0rem 4rem 2rem 4rem;
 }
 
+.bubbleBckgrndDash {
+  margin-top: 1rem;
+  background-image: linear-gradient(135deg, rgba(156, 146, 169, 0.7), rgba(218, 116, 144, 0.7));
+  border-radius: 20px;
+
+  display: grid;
+  grid-template-rows: repeat(1, 1fr 2fr);
+  /* grid-gap: 10px; */
+  padding: 0rem 4rem 2rem 4rem;
+  /* align-items: flex-start; */
+}
+
 .left-HomePage {
   column-count: 1;
   display: grid;
@@ -686,10 +711,21 @@ main {
   padding: 30px;
   max-width: 800px;
   display: grid;
+
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 20px;
   justify-content: space-between;
 }
+
+.destCardContainerDash {
+  max-width: 400px;
+  height: 10rem;
+  border-radius: 12px;
+  position: relative;
+  width: 350px;
+  background-image: url("https://media.istockphoto.com/id/1192780580/photo/fuji-mountain-red-maple-tree-and-fisherman-boat-with-morning-mist-in-autumn-kawaguchiko-lake.jpg?s=612x612&w=0&k=20&c=-FiZmc4qf2lVWlHf1WxysjoPJN7doER4qRmoPDLJpSw=");
+}
+
 
 .destCardContainer {
   max-width: 400px;
@@ -750,4 +786,45 @@ main {
   width: 1.8rem;
   height: 1.8rem;
   cursor: pointer;
+}
+
+.dashboardHeader {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+
+.dashboardMainText {
+  color: white;
+  font-weight: bolder;
+  font-size: 2rem;
+}
+
+.addJourneyContainer {
+  display: inline-block;
+  border: 2px solid #0094FF;
+  height: fit-content;
+}
+
+.addJourneyContainer>a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.addJourneyContainer>a>div {
+  color: white;
+}
+
+.plusJourney {
+  background-color: none;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#addTextJourney {
+  background-color: #0094FF;
+  padding-left: 20px;
+  padding-right: 20px;
 }
