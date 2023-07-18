@@ -84,6 +84,8 @@ This code snippet displays a modal pop-up for deleting a journey. Modals/PopUps 
 - [ ] Add the ability to add another user to the same journey and share expenses and costs belonging to a user.
 
 ## Below: The Wireframe of the App
+![Link for Trello Board](https://trello.com/b/GEMaqcaK/flight-tracker-app)
+
 ## Wireframe 1
 ![wireframe1](/public/images/wireframe_1.png)
 
