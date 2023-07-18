@@ -300,6 +300,7 @@ hr {
   height: auto;
   width: auto;
   border: 2px solid #D9D9D9;
+  background-color: #F5F5F7;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -307,11 +308,14 @@ hr {
 }
 
 .table {
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
 
 }
 
-#showUpdateModal {
+#showUpdateModal,
+#showDeleteModal,
+#showUpdateSimCatForm,
+#showDelSimCatForm {
   border: none;
 
   width: 1rem;
@@ -322,20 +326,22 @@ hr {
   background-repeat: no-repeat;
   background-color: transparent;
   outline: none;
+  /* background-image: url("../images/Edit.svg"); */
+}
+
+#showUpdateModal {
   background-image: url("../images/Edit.svg");
 }
 
 #showDeleteModal {
-  border: none;
+  background-image: url("../images/Trash.svg");
+}
 
-  width: 1rem;
-  height: 1rem;
-  cursor: pointer;
-  border: none;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  outline: none;
+#showUpdateSimCatForm {
+  background-image: url("../images/Edit.svg");
+}
+
+#showDelSimCatForm {
   background-image: url("../images/Trash.svg");
 }
 
@@ -343,6 +349,7 @@ hr {
   display: flex;
   gap: 10px;
   border: none;
+  margin-left: 1rem;
 }
 
 .addingBtns {
@@ -498,7 +505,8 @@ body>main {
   color: black;
 }
 
-#ActualBudget {
+#ActualBudget,
+#simulatedBudget {
   background-color: #F5F5F766;
   padding: 10px;
   border-radius: 20px;
@@ -526,8 +534,8 @@ main {
 #showEditJourney {
   border: none;
 
-  width: 1rem;
-  height: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
   cursor: pointer;
   border: none;
   background-size: contain;
