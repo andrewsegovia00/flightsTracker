@@ -323,6 +323,7 @@ noEditSimCat.forEach(cancel => {
   // Listens when the close Edit Journey btn is clicked
 
   closeDeleteJourney.addEventListener('click', closeDelJourneyPopUp);
+  closeEditJourney.addEventListener('click', closeEditJourneyPopUp);
 
   function closeEditJourneyPopUp() {
     editJourneyShowModal.classList.remove('popUp');
