@@ -671,10 +671,15 @@ main {
 .featuresContainer {
   color: white;
   display: flex;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
 }
 
 #featureHeader {
   color: white;
+  margin-left: 1rem;
+  font-size: 2rem;
 }
 
 .preloadContainer {
@@ -714,4 +719,35 @@ main {
   right: 0;
   bottom: 0;
 
+}
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.leftLinks,
+.rightLinks {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.rightLinks a {
+  margin-left: 20px;
+  text-decoration: none;
+  margin-right: 2rem;
+}
+
+.leftLinks a {
+  text-decoration: none;
+}
+
+.downArrow {
+  background-image: url("../images/arrowDown.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 1.8rem;
+  height: 1.8rem;
+  cursor: pointer;
 }

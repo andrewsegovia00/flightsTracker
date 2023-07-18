@@ -26,12 +26,17 @@
 </head>
 
 <body>
-    <nav>
-        <a href="/dashboard">ALL JOURNEYS</a>
-        <% if (user) { %>
-            <a href="/logout">LOG OUT</a>
-            <% } else { %>
-                <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
-                <% } %>
+    <nav class="navBar">
+        <div class="leftLinks">
+            <a href="/">TRAVEL BUD</a>
+        </div>
+        <div class="rightLinks">
+            <a href="/dashboard" id="dashboard">ALL JOURNEYS</a>
+            <% if (user) { %>
+                <a href="/logout">LOG OUT</a>
+                <% } else { %>
+                    <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
+                    <% } %>
+        </div>
     </nav>
     <main>
