@@ -579,6 +579,21 @@ main {
   background-image: url("../images/darkEditIcon.png");
 }
 
+#showDeleteJourney {
+  border: none;
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  border: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  outline: none;
+  background-image: url("../images/Trash.svg");
+  margin-left:
+}
+
 #backIcon {
   border: none;
   width: 1.8rem;
@@ -620,6 +635,16 @@ main {
   color: rgb(255, 255, 255);
   border: 1px #0094FF solid;
   border-radius: 4px 4px 4px 4px;
+}
+
+.confirmsFirstJourney {
+  margin-left: 10px;
+  flex: 1;
+  background-color: #0094FF;
+  color: rgb(255, 255, 255);
+  border: 1px #0094FF solid;
+  border-radius: 10px 10px 10px 10px;
+  padding: 20px;
 }
 
 /* 
@@ -874,6 +899,7 @@ main {
   font-weight: bolder;
   font-size: 2rem;
   height: fit-content;
+  margin-right: 20px;
 }
 
 .addJourneyContainer {
@@ -929,4 +955,26 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.mainJourneyDivs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Set width and height to define the size of the parent div */
+  width: 100%;
+  /* or any specific width you want */
+  height: 100vh;
+  /* or any specific height you want */
+  flex-direction: column;
+  /* To stack the children divs vertically */
+  grid-column: span 2;
+}
+
+.middleFirstJourney {
+  display: flex;
+  grid-column: span 2;
+  justify-content: center;
+  align-items: center;
+  column-count: 2;
 }

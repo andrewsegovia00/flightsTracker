@@ -57,14 +57,15 @@ const simulatedBudgetDiv = document.getElementById("simulatedBudget");
 
 // cache the Edit Journey Icon
 const showEditJourney = document.getElementById(`showEditJourney`);
+const showDeleteJourney = document.getElementById(`showDeleteJourney`);
 
 // cache the close Btn in the Journey PopUp
 const closeEditJourney = document.getElementById(`closeEditJourney`);
+const closeDeleteJourney = document.getElementById(`closeDeleteJourney`);
 
 // cache the form to edit the Journey
 const editJourneyShowModal = document.getElementById('editJourneyShowModal');
-
-console.log(showEditJourney)
+const deleteJourneyShowModal = document.getElementById('deleteJourneyShowModal');
 
 // switching interval
 let switchInterval = 1;
@@ -305,6 +306,7 @@ noEditSimCat.forEach(cancel => {
 
   // Listens when the edit icon is clicked for Journeys
   showEditJourney.addEventListener('click', showEditPopUp)
+  showDeleteJourney.addEventListener('click', showDeletePopUp)
 
   function showEditPopUp() {
     console.log(`were here 20202020202`);
@@ -312,11 +314,22 @@ noEditSimCat.forEach(cancel => {
     editJourneyShowModal.classList.remove('hide');
   }
 
+  function showDeletePopUp() {
+    console.log(`were here 20202020202`);
+    deleteJourneyShowModal.classList.add('popUp');
+    deleteJourneyShowModal.classList.remove('hide');
+  }
+
   // Listens when the close Edit Journey btn is clicked
 
-  closeEditJourney.addEventListener('click', closeEditJourneyPopUp);
+  closeDeleteJourney.addEventListener('click', closeDelJourneyPopUp);
 
   function closeEditJourneyPopUp() {
-      editJourneyShowModal.classList.remove('popUp');
-      editJourneyShowModal.classList.add('hide');
+    editJourneyShowModal.classList.remove('popUp');
+    editJourneyShowModal.classList.add('hide');
+    }
+    
+  function closeDelJourneyPopUp() {
+    deleteJourneyShowModal.classList.remove('popUp');
+    deleteJourneyShowModal.classList.add('hide');
     }

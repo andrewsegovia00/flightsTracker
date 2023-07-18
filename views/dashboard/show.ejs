@@ -8,6 +8,7 @@
                     My Trip: <%= journey.destination.toUpperCase() %>
                 </h1>
                 <button type="button" id="showEditJourney" class="showEditJourney"></button>
+                <button type="button" id="showDeleteJourney" class="showDeleteJourney"></button>
             </div>
             <div class="toggleTop" id="switch">
                 <div class="left-toggleTop" id="leftToggle">
@@ -18,12 +19,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="toggleTop">
-                <input id="switch" type="checkbox">
-                
-            </div> -->
-        <!-- <div class="toggleTop"> -->
-        <!-- </div> -->
         <div class="row mt-4 mainContainer">
             <div class="col-4" id="dashboardTotal">
                 <div id="Toggle">
@@ -35,22 +30,33 @@
                     </div>
                 </div>
                 <div id="editJourneyShowModal" class="hide">
-                    <form id="simCategoryForm" method="POST" action="/dashboard/<%= journey._id %>/expenses3">
+                    <form id="journeyUpdate" method="POST" action="/dashboard/<%= journey._id %>?_method=PUT">
                         <div class="popUpSpacing">
                             <label>Journey Name:</label>
-                            <input type="text" name="name" placeholder="Name">
+                            <input type="text" name="destination" placeholder="Name">
                         </div>
                         <div class="popUpSpacing">
                             <label>Actual Spending Budget:</label>
                             <input type="number" name="actTotal" placeholder="$0.00">
-                            <div class="popUpSpacing">
-                                <label>Simulated Budget:</label>
-                                <input type="number" name="simTotal" placeholder="$0.00">
-                            </div>
+                        </div>
+                        <div class="popUpSpacing">
+                            <label>Simulated Budget:</label>
+                            <input type="number" name="simTotal" placeholder="$0.00">
                         </div>
                         <div class="popUpBtns">
                             <button class="CancelPopUp" type="button" id="closeEditJourney">Cancel</button>
                             <input class="confirmsPopUp" type="submit" value="Add">
+                        </div>
+                    </form>
+                </div>
+                <div id="deleteJourneyShowModal" class="hide">
+                    <form id="journeyDelete" method="POST" action="/dashboard/<%= journey._id %>?_method=DELETE">
+                        <div class="popUpSpacing">
+                            <div>Are you sure you want to delete this Journey?</div>
+                        </div>
+                        <div class="popUpBtns">
+                            <button class="CancelPopUp" type="button" id="closeDeleteJourney">No</button>
+                            <button class="confirmsPopUp" type="submit">Yes</button>
                         </div>
                     </form>
                 </div>
@@ -171,11 +177,16 @@
                         <div class="container-header">
                             <div class="left-header col-6">
                                 <h3>My Budget</h3>
-                                <h3>$0</h3>
+                                <h3>
+                                    <%= journey.actualBudget.total>= 0 ? $ + journey.actualBudget.total : `$0` %>
+                                </h3>
                             </div>
                             <div class="right-header col-6">
                                 <h3>Remaining Budget</h3>
-                                <h3>$0</h3>
+                                <h3>
+                                    <%= journey.actualBudget.total>= 0 ? $ + (journey.actualBudget.total - 500) : `$0`
+                                        %>
+                                </h3>
                             </div>
                         </div>
                         <h3 class="budgetTitle">Trip Expenses</h3>
@@ -320,11 +331,16 @@
                     <div class="container-header">
                         <div class="left-header col-6">
                             <h3>My Budget</h3>
-                            <h3>$0/h3>
+                            <h3>
+                                <%= journey.simulatedBudget.total>= 0 ? $ + journey.simulatedBudget.total : `$0`%>
+                            </h3>
                         </div>
                         <div class="right-header col-6">
                             <h3>Remaining Budget</h3>
-                            <h3>$0</h3>
+                            <h3>
+                                <%= journey.simulatedBudget.total>= 0 ? $ + (journey.simulatedBudget.total - 500) :
+                                    `$0`%>
+                            </h3>
                         </div>
                     </div>
                     <h3 class="budgetTitle">Trip Expenses</h3>
