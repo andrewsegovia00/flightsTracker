@@ -4,45 +4,15 @@
 
 Travel Bud is a user-friendly app that empowers travelers to budget and manage their expenses effortlessly. With a strong focus on forecasting and planning, Travel Bud provides a comprehensive platform to estimate trip costs and simulate budgets before you even set foot on your journey. Its intuitive design allows users to seamlessly track and categorize expenses while on the go, ensuring a smooth and stress-free travel experience. Whether you're a seasoned traveler or planning your first adventure, Travel Bud is your ultimate companion for smart and efficient budgeting.
 
-## Below: The Wireframe of the Game
-## Wireframe 1
-![wireframe1](/public/images/wireframe_1.png)
-
-## Wireframe 2
-![wireframe1](/public/images/wireframe_2.png)
-
-## Wireframe 3
-![wireframe1](/public/images/wireframe_3.png)
-
-## Wireframe 4
-![wireframe1](/public/images/wireframe_4.png)
-
 ## Technologies Used:
-![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 
-![Node.JS](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-
-![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
-
-![Heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)
-
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
-
-![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
-
-![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
-
-![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white)
-
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-
-![VScode](https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E) ![Node.JS](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) ![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white) ![Heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white) ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white) ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white) ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white) ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) ![VScode](https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
 
 ## Getting Started
 
-:video_game: [Live Link](https://travelbudgeting-tracker-0734a04974ea.herokuapp.com/)
+Here's a live link to get the fastest access to the app: [Live Link](https://travelbudgeting-tracker-0734a04974ea.herokuapp.com/)
+
+Want to deploy it locally? No problem! Here's a guide:
 
 Clone the repository: Start by cloning this GitHub repository to your local machine using the following command:
 
@@ -76,7 +46,7 @@ Sign In and Get Started: Travel Bud provides Google OAuth for user authenticatio
 
 Explore and Enjoy: Now you're all set to explore Travel Bud's features and enjoy a seamless and organized travel planning experience. Happy traveling!
 
-## Game Screenshots:
+## App Screenshots:
 
 ### Below: Home Page View
 ![A screenshot displaying the home page.](/public/images/homePage.png)
@@ -90,7 +60,8 @@ Explore and Enjoy: Now you're all set to explore Travel Bud's features and enjoy
 ### Below: Deleting a Journey
 ![A screenshot showing the sad moment the user decides to delete a journey](/public/images/deletinJourney.png)
 
-## Logic Behind the Machine
+
+## Logic Behind Travel Bud
 ```ejs
 <div id="deleteJourneyShowModal" class="hide">
                     <form id="journeyDelete" method="POST" action="/dashboard/<%= journey._id %>?_method=DELETE">
@@ -111,3 +82,16 @@ This code snippet displays a modal pop-up for deleting a journey. Modals/PopUps 
 - [ ] Add the ability to share your journeys and forecasted budgets with friends ad loved ones.
 - [ ] Request a travel API to populate the homepage with popular destination and more details about the location.
 - [ ] Add the ability to add another user to the same journey and share expenses and costs belonging to a user.
+
+## Below: The Wireframe of the App
+## Wireframe 1
+![wireframe1](/public/images/wireframe_1.png)
+
+## Wireframe 2
+![wireframe1](/public/images/wireframe_2.png)
+
+## Wireframe 3
+![wireframe1](/public/images/wireframe_3.png)
+
+## Wireframe 4
+![wireframe1](/public/images/wireframe_4.png)
