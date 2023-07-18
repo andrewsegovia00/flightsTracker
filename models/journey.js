@@ -1,40 +1,43 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+// const expensesSchema = require('../models/expense');
+const categoryABSchema = require('../models/abCategory');
 
 const expensesSchema = new Schema({
-    title: {
-        type: String,
-        required: true,
-        default: 'Insert Name'
-    },
-    price: {
-        type: Number,
-        required: true,
-        default: 0,
-    },
-   expenseDate: {
-        type: Date,
-        required: Date,
-        default: function() {
-            return new Date;
-        }
-    },
-  }, {
-    timestamps: true
-  });
-
-  const categoryABSchema = new Schema({
-    name: {
+  title: {
       type: String,
-      required: true
-    },
-  }, {
-    timestamps: true
-  });
+      required: true,
+      default: 'Insert Name'
+  },
+  price: {
+      type: Number,
+      required: true,
+      default: 0,
+  },
+ expenseDate: {
+      type: Date,
+      required: Date,
+      default: function() {
+          return new Date;
+      }
+  },  
+  category: [],
+}, {
+  timestamps: true
+});
 
 const actualBudgetSchema = new Schema({
-    category: [categoryABSchema],
-    expenses: [expensesSchema],
+  category: [
+    {
+        type: Schema.Types.ObjectId,
+        ref: 'CategoryAB',
+    }
+  ],
+  expenses: [expensesSchema], 
+    totalBudget: {
+      type: Number,
+      default: 0,
+  }
     },
   {
     timestamps: true

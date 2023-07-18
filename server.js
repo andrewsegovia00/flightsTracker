@@ -15,7 +15,7 @@ require('./config/passport');
 const indexRouter = require('./routes/index');
 const dashboardRouter = require('./routes/dashboard');
 const expensesRouter = require('./routes/expenses');
-// const categoriesRouter = require('./routes/categories');
+const categoriesRouter = require('./routes/categories');
 // const actualBudgetsRouter = require('./routes/actualBudgets');
 // const simulatedBudgetsRouter = require('./routes/simulatedBudgets');
 
@@ -49,6 +49,7 @@ app.use(function (req, res, next) {
 app.use('/', indexRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/', expensesRouter);
+app.use('/', categoriesRouter);
 // app.use('/', expensesRouter);
 // app.use('/', categoriesRouter);
 // app.use('/', actualBudgetsRouter);

@@ -373,7 +373,6 @@ body>main h1:first-child {
 
 #Toggle {
   display: flex;
-  /* margin-top: 7px; */
   justify-content: center;
   margin-bottom: 24px;
   align-items: center;
@@ -407,6 +406,56 @@ body>main h1:first-child {
 .right-header h3 {
   font-size: 1rem;
 }
+
+.right-toggleTop {
+  border-radius: 0px 8px 8px 0px;
+  background-color: #F5F5F7 .5;
+  color: white;
+  border: 2px solid #0094FF;
+  cursor: pointer;
+  text-align: center;
+  padding: 5px 12px 5px 12px;
+}
+
+.right-toggleTopActive {
+  border-radius: 0px 8px 8px 0px;
+  background-color: #0094FF;
+  color: #F5F5F7;
+  border: 2px solid #0094FF;
+  cursor: pointer;
+  text-align: center;
+  padding: 5px 12px 5px 12px;
+}
+
+.left-toggleTop {
+  border-radius: 8px 0px 0px 8px;
+  background-color: #0094FF;
+  color: #F5F5F7;
+  text-decoration: underline;
+  border: 2px solid #0094FF;
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: center;
+  padding: 5px 12px 5px 12px;
+}
+
+.left-toggleTopActive {
+  border-radius: 8px 0px 0px 8px;
+  background-color: none;
+  color: #F5F5F7;
+  text-decoration: underline;
+  border: 2px solid #0094FF;
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: center;
+  padding: 5px 12px 5px 12px;
+}
+
+/* .left-toggleTop,
+.right-toggleTop {
+  text-align: center;
+  padding: 5px 12px 5px 12px;
+} */
 
 .total-headers {
   text-align: center;
@@ -455,9 +504,16 @@ body>main h1:first-child {
 
 .journeyContainer {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: space-between;
+  /* align-items: center; */
   margin-left: 3rem;
+}
+
+.headerContainerTop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 #journeyTitle {
@@ -511,7 +567,7 @@ main {
 
 #showEditJourney {
   border: none;
-
+  cursor: pointer;
   width: 1.5rem;
   height: 1.5rem;
   cursor: pointer;
@@ -634,13 +690,24 @@ main {
   padding: 0rem 4rem 2rem 4rem;
 }
 
+.bubbleBackground {
+  margin-top: 1rem;
+  background-image: linear-gradient(135deg, rgba(156, 146, 169, 0.7), rgba(218, 116, 144, 0.7));
+  border-radius: 20px;
+
+  display: grid;
+  grid-template-columns: repeat(1, 1fr 2fr);
+  grid-gap: 10px;
+  padding: 0rem 4rem 2rem 4rem;
+}
+
 .bubbleBckgrndDash {
   margin-top: 1rem;
   background-image: linear-gradient(135deg, rgba(156, 146, 169, 0.7), rgba(218, 116, 144, 0.7));
   border-radius: 20px;
 
   display: grid;
-  grid-template-rows: repeat(1, 1fr 2fr);
+  grid-template-rows: repeat(1, 1fr 4fr);
   /* grid-gap: 10px; */
   padding: 0rem 4rem 2rem 4rem;
   /* align-items: flex-start; */
@@ -747,9 +814,9 @@ main {
   border: 1px solid #0094FF;
   background-color: #0094FF;
   color: #FFFFFF;
-  padding: 5px 20px 5px 20px;
+  padding: 12px 12px 12px 12px;
   margin: 0px 10px 10px 0px;
-  border-radius: 4px;
+  border-radius: 50px;
   font-size: .6rem;
   position: absolute;
   right: 0;
@@ -777,6 +844,11 @@ main {
 
 .leftLinks a {
   text-decoration: none;
+  margin-left: 2rem;
+}
+
+.popUpSpacing {
+  margin-top: 1rem;
 }
 
 .downArrow {
@@ -793,12 +865,15 @@ main {
   display: flex;
   justify-content: space-between;
   color: white;
+  height: fit-content;
+  align-items: center;
 }
 
 .dashboardMainText {
   color: white;
   font-weight: bolder;
   font-size: 2rem;
+  height: fit-content;
 }
 
 .addJourneyContainer {
@@ -827,4 +902,31 @@ main {
   background-color: #0094FF;
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.toggleTop {
+  position: fixed;
+  margin-right: 2rem;
+  right: 0;
+  display: flex;
+}
+
+.rightArrow {
+  background-image: url("../images/rightArrow.png");
+
+  border: none;
+
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+  border: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+  outline: none;
+}
+
+.mainJourneyDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

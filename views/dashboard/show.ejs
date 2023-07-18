@@ -1,15 +1,29 @@
-<div class="row"><input id="switch" type="checkbox"></div>
 <%- include('../partials/header') %>
     <div class="background">
         <div class="journeyContainer">
-            <a href="/dashboard" id="backIcon">
-            </a>
-            <h1 id="journeyTitle">
-                My Trip: <%= journey.destination.toUpperCase() %>
-            </h1>
-            <button id="showEditJourney">
-            </button>
+            <div class="mainJourneyDiv">
+                <a href="/dashboard" id="backIcon">
+                </a>
+                <h1 id="journeyTitle">
+                    My Trip: <%= journey.destination.toUpperCase() %>
+                </h1>
+                <button type="button" id="showEditJourney" class="showEditJourney"></button>
+            </div>
+            <div class="toggleTop" id="switch">
+                <div class="left-toggleTop" id="leftToggle">
+                    SIM
+                </div>
+                <div class="right-toggleTop" id="rightToggle">
+                    REAL
+                </div>
+            </div>
         </div>
+        <!-- <div class="toggleTop">
+                <input id="switch" type="checkbox">
+                
+            </div> -->
+        <!-- <div class="toggleTop"> -->
+        <!-- </div> -->
         <div class="row mt-4 mainContainer">
             <div class="col-4" id="dashboardTotal">
                 <div id="Toggle">
@@ -20,6 +34,26 @@
                         Graphs
                     </div>
                 </div>
+                <div id="editJourneyShowModal" class="hide">
+                    <form id="simCategoryForm" method="POST" action="/dashboard/<%= journey._id %>/expenses3">
+                        <div class="popUpSpacing">
+                            <label>Journey Name:</label>
+                            <input type="text" name="name" placeholder="Name">
+                        </div>
+                        <div class="popUpSpacing">
+                            <label>Actual Spending Budget:</label>
+                            <input type="number" name="actTotal" placeholder="$0.00">
+                            <div class="popUpSpacing">
+                                <label>Simulated Budget:</label>
+                                <input type="number" name="simTotal" placeholder="$0.00">
+                            </div>
+                        </div>
+                        <div class="popUpBtns">
+                            <button class="CancelPopUp" type="button" id="closeEditJourney">Cancel</button>
+                            <input class="confirmsPopUp" type="submit" value="Add">
+                        </div>
+                    </form>
+                </div>
                 <div id="ActTotals">
                     <h4 class="total-headers">Actual Budget</h4>
                     <div class="totalContents">
@@ -28,7 +62,7 @@
                                 Total:
                             </h5>
                             <h5 class="amountIndivCount">
-                                $10000
+                                $500
                             </h5>
                         </div>
                         <div class="total-indiv-count">
@@ -81,7 +115,7 @@
                                 Total:
                             </h5>
                             <h5 class="amountIndivCount">
-                                $10000
+                                $500
                             </h5>
                         </div>
                         <div class="total-indiv-count">
@@ -137,11 +171,11 @@
                         <div class="container-header">
                             <div class="left-header col-6">
                                 <h3>My Budget</h3>
-                                <h3>$300</h3>
+                                <h3>$0</h3>
                             </div>
                             <div class="right-header col-6">
                                 <h3>Remaining Budget</h3>
-                                <h3>$300</h3>
+                                <h3>$0</h3>
                             </div>
                         </div>
                         <h3 class="budgetTitle">Trip Expenses</h3>
@@ -166,7 +200,9 @@
                                             <p class="col-2">
                                                 <%= expense.expenseDate.toLocaleDateString('en-US') %>
                                             </p>
-                                            <p class="col-2">Coming Soon</p>
+                                            <p class="col-2">
+                                                <%= expense.category %>
+                                            </p>
 
                                             <div class="col-1 btn-container">
                                                 <button id="showUpdateModal" data-expense-id="<%= expense._id %>">
@@ -197,6 +233,22 @@
                                                     <input type="date" name="expenseDate"
                                                         value="<%= expense.expenseDate.toISOString().split('T')[0] %>">
                                                 </div>
+                                                <div>
+                                                    <label for="category">Category:</label>
+                                                    <select name="category" id="category">
+                                                        <% if (journey.actualBudget.category.length> 0) { %>
+                                                            <% journey.actualBudget.category.forEach(category=> { %>
+                                                                <option value="<%= category.name %>"
+                                                                    id="<%= category._id %>">
+                                                                    <%= category.name %>
+                                                                </option>
+                                                                <% }); %>
+                                                                    <% } else { %>
+                                                                        <option value="Coming Soon">Coming Soon</option>
+                                                                        <% } %>
+                                                    </select>
+
+                                                </div>
                                                 <div class="popUpBtns">
                                                     <button class="CancelPopUp" id="closeDelExpModal" type="button"> No
                                                     </button>
@@ -223,15 +275,15 @@
                     </div>
                     <div id="showExpense" class="hide">
                         <form id="expenseForm" class="" method="POST" action="/dashboard/<%= journey._id %>/expenses">
-                            <div class="">
+                            <div class="popUpSpacing">
                                 <label>Description:</label>
                                 <input type="text" name="title">
                             </div>
-                            <div class="">
+                            <div class="popUpSpacing">
                                 <label>Price:</label>
                                 <input type="number" name="price" step="0.01" placeholder="$0.00">
                             </div>
-                            <div class="">
+                            <div class="popUpSpacing">
                                 <label>Date:</label>
                                 <input type="date" name="expenseDate">
                             </div>
@@ -244,7 +296,7 @@
 
                     <div id="showCat" class="hide">
                         <form id="categoryForm" method="POST" action="/dashboard/<%= journey._id %>/expenses2">
-                            <div class="">
+                            <div class="popUpSpacing">
                                 <label>Category Name:</label>
                                 <input type="text" name="name">
                             </div>
@@ -262,17 +314,17 @@
 
             <div class="col-12 hide" id="simulatedBudget">
                 <div class="abContainer">
-                    <div class="">
+                    <div class="popUpSpacing">
                         <h3 class="title">SIMULATED BUDGET</h3>
                     </div>
                     <div class="container-header">
                         <div class="left-header col-6">
                             <h3>My Budget</h3>
-                            <h3>$300</h3>
+                            <h3>$0/h3>
                         </div>
                         <div class="right-header col-6">
                             <h3>Remaining Budget</h3>
-                            <h3>$300</h3>
+                            <h3>$0</h3>
                         </div>
                     </div>
                     <h3 class="budgetTitle">Trip Expenses</h3>
@@ -308,7 +360,7 @@
                                             </button>
                                         </div>
                                         <div id="deleteSimCatModal" data-expense-id="<%= category._id %>" class="hide">
-                                            <div class="row">
+                                            <div class="popUpSpacing">
                                                 <label>Are you sure You would like to DELETE this
                                                     category?</label>
                                             </div>
@@ -342,8 +394,13 @@
                                                     <input type="number" name="price" step="0.01"
                                                         placeholder="$<%= category.price %>">
                                                 </div>
-                                                <button type="submit"> Yes </button>
-                                                <button id="closeEditSimCatModal" type="button"> No </button>
+                                                <div class="popUpBtns">
+                                                    <button class="confirmsPopUp" id="closeEditSimCatModal"
+                                                        type="button">
+                                                        No
+                                                    </button>
+                                                    <button class="CancelPopUp" type="submit"> Yes </button>
+                                                </div>
                                             </form>
                                         </div>
 
@@ -356,16 +413,38 @@
                                                 <div id="showSimCat" class="hide">
                                                     <form id="simCategoryForm" method="POST"
                                                         action="/dashboard/<%= journey._id %>/expenses3">
-                                                        <div class="row">
+                                                        <div class="popUpSpacing">
                                                             <label>Category:</label>
                                                             <input type="text" name="name" placeholder="Name">
                                                         </div>
-                                                        <div class="row">
+                                                        <div class="popUpSpacing">
                                                             <label>Spending:</label>
                                                             <input type="number" name="price" placeholder="$0.00">
                                                         </div>
-                                                        <button type="button" id="simCategoryABCloseBtn">Cancel</button>
-                                                        <input type="submit" value="Add">
+                                                        <div class="popUpBtns">
+                                                            <button class="CancelPopUp" type="button"
+                                                                id="simCategoryABCloseBtn">Cancel</button>
+                                                            <input class="confirmsPopUp" type="submit" value="Add">
+                                                        </div>
+                                                    </form>
+                                                </div>
+
+                                                <div id="editJourneyShowModal" class="hide">
+                                                    <form id="simCategoryForm" method="POST"
+                                                        action="/dashboard/<%= journey._id %>/expenses3">
+                                                        <div class="popUpSpacing">
+                                                            <label>Category:</label>
+                                                            <input type="text" name="name" placeholder="Name">
+                                                        </div>
+                                                        <div class="popUpSpacing">
+                                                            <label>Spending:</label>
+                                                            <input type="number" name="price" placeholder="$0.00">
+                                                        </div>
+                                                        <div class="popUpBtns">
+                                                            <button class="CancelPopUp" type="button"
+                                                                id="closeEditJourney">Cancel</button>
+                                                            <input class="confirmsPopUp" type="submit" value="Add">
+                                                        </div>
                                                     </form>
                                                 </div>
                     </div>

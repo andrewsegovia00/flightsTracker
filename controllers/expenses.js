@@ -4,7 +4,6 @@ module.exports = {
   create,
   createCategory,
   createCategory2,
-  // Add this export
   delete: deleteExpense,
   deleteSimCat: deleteCategories,
   updateExp,
@@ -83,7 +82,7 @@ async function createCategory(req, res) {
 
   async function updateExp(req, res)
   {
-
+    console.log(req.body);
     const { title, price, expenseDate, category } = req.body;
     const journey = await Journey.findOne({ 'user': req.user._id, 'actualBudget.expenses._id': req.params.id});
 
@@ -108,6 +107,14 @@ async function createCategory(req, res) {
     {
       expense.price = expense.price
     }
+    if(expense.category !== category && category !== '')
+    {
+      expense.category.push(category);
+    }
+    else
+    {
+      expense.price = expense.price
+    }
     if(expense.expenseDate !== expenseDate)
     {
       expense.expenseDate = expenseDate ;
@@ -127,7 +134,6 @@ async function createCategory(req, res) {
     console.log(req.body)
     console.log(req.params.id)
     
-
     const { name, price } = req.body;
     const journey = await Journey.findOne({ 'user': req.user._id, 'simulatedBudget.category._id': req.params.id});
 

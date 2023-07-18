@@ -46,10 +46,25 @@ const noEditSimCat = document.querySelectorAll(`#closeEditSimCatModal`)
 
 //cache toggle
 const switched = document.getElementById('switch');
+console.log(switched)
+// cache left side of toggleTop
+const leftToggle = document.getElementById('leftToggle');
+const rightToggle = document.getElementById('rightToggle');
 
 // cache the parent divs of Actual Budget and Simulated Budget
 const actualBudgetDiv = document.querySelectorAll("#ActualBudget");
 const simulatedBudgetDiv = document.getElementById("simulatedBudget");
+
+// cache the Edit Journey Icon
+const showEditJourney = document.getElementById(`showEditJourney`);
+
+// cache the close Btn in the Journey PopUp
+const closeEditJourney = document.getElementById(`closeEditJourney`);
+
+// cache the form to edit the Journey
+const editJourneyShowModal = document.getElementById('editJourneyShowModal');
+
+console.log(showEditJourney)
 
 // switching interval
 let switchInterval = 1;
@@ -80,11 +95,24 @@ function switchBudget() {
     {
         actualBudgetDiv.forEach(e=>{e.classList.add('hide')});
         simulatedBudgetDiv.classList.remove('hide')
+        rightToggle.classList.remove('right-toggleTop')
+        rightToggle.classList.add('right-toggleTopActive')
+
+        leftToggle.classList.remove('left-toggleTop')
+        leftToggle.classList.add('left-toggleTopActive')
+
+        // rightToggle.classList.remove('')
     }
     else
     {
         actualBudgetDiv.forEach(e=>{e.classList.remove('hide')});
         simulatedBudgetDiv.classList.add('hide')
+
+        rightToggle.classList.remove('right-toggleTopActive')
+        rightToggle.classList.add('right-toggleTop')
+
+        leftToggle.classList.remove('left-toggleTopActive')
+        leftToggle.classList.add('left-toggleTop')
     }
 }
 
@@ -249,8 +277,8 @@ showDelSimCategoryForm.forEach(button => {
 noDeleteSimCat.forEach(cancel => {
     cancel.addEventListener('click', (event) => {
       const cancelDel = event.currentTarget;
-      cancelDel.parentElement.classList.remove('popUp'); 
-      cancelDel.parentElement.classList.add('hide');
+      cancelDel.parentElement.parentElement.parentElement.classList.remove('popUp'); 
+      cancelDel.parentElement.parentElement.parentElement.classList.add('hide');
       showOverlay.classList.remove('active');
     });
   });
@@ -269,8 +297,26 @@ showUpdateSimCatForm.forEach(button => {
 noEditSimCat.forEach(cancel => {
     cancel.addEventListener('click', (event) => {
       const cancelEdit = event.currentTarget;
-      cancelEdit.parentElement.classList.remove('popUp'); 
-      cancelEdit.parentElement.classList.add('hide');
+      cancelEdit.parentElement.parentElement.parentElement.classList.remove('popUp'); 
+      cancelEdit.parentElement.parentElement.parentElement.classList.add('hide');
       showOverlay.classList.remove('active');
     });
   });
+
+  // Listens when the edit icon is clicked for Journeys
+  showEditJourney.addEventListener('click', showEditPopUp)
+
+  function showEditPopUp() {
+    console.log(`were here 20202020202`);
+    editJourneyShowModal.classList.add('popUp');
+    editJourneyShowModal.classList.remove('hide');
+  }
+
+  // Listens when the close Edit Journey btn is clicked
+
+  closeEditJourney.addEventListener('click', closeEditJourneyPopUp);
+
+  function closeEditJourneyPopUp() {
+      editJourneyShowModal.classList.remove('popUp');
+      editJourneyShowModal.classList.add('hide');
+    }
