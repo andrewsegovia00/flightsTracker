@@ -500,4 +500,6 @@ body>main {
   margin-left: 1.5rem;
 }
 
-.abContainer {}
+.abContainer {
+  padding: 20px;
+}
