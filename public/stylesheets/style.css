@@ -586,6 +586,7 @@ main {
   height: 1.5rem;
   cursor: pointer;
   border: none;
+  margin-left: 1rem;
   background-size: contain;
   background-repeat: no-repeat;
   background-color: transparent;
