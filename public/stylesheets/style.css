@@ -14,6 +14,7 @@ a {
 }
 
 body {
+  overflow-x: hidden;
   /* margin: 0; */
   height: 100vh;
   display: grid;
@@ -814,7 +815,8 @@ main {
   font-size: 1.3rem;
   position: absolute;
   margin: 10px 0px 0px 10px;
-  color: black;
+  color: white;
+  text-shadow: -1px -1px 1px black, 1px -1px 1px black, -1px 1px 1px black, 1px 1px 1px black;
   font-weight: bolder;
 }
 
@@ -914,9 +916,6 @@ main {
 }
 
 .toggleTop {
-  /* position: fixed; */
-  /* margin-right: 2rem; */
-  /* right: 0; */
 
   display: flex;
   justify-content: center;
@@ -1020,7 +1019,8 @@ main {
   border-radius: 12px;
   position: relative;
   width: 350px;
-  background-image: url("https://t3.ftcdn.net/jpg/04/87/13/40/360_F_487134056_ttJAg56QAcB15RKhdOQUKPXGxwGt5xqB.jpg");
+  /* background-image: url("https://t3.ftcdn.net/jpg/04/87/13/40/360_F_487134056_ttJAg56QAcB15RKhdOQUKPXGxwGt5xqB.jpg"); */
+  /* background-image: url("../images/journeyBackground.png"); */
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -1032,4 +1032,8 @@ main {
   border-radius: 12px;
   position: relative;
   /* background-image: url("https://media.istockphoto.com/id/1192780580/photo/fuji-mountain-red-maple-tree-and-fisherman-boat-with-morning-mist-in-autumn-kawaguchiko-lake.jpg?s=612x612&w=0&k=20&c=-FiZmc4qf2lVWlHf1WxysjoPJN7doER4qRmoPDLJpSw="); */
+}
+
+.updateInput::placeholder {
+  color: #767676;
 }

@@ -21,7 +21,9 @@ async function deleteCategories(req, res) {
     journey.simulatedBudget.category.splice(categoryIndex, 1);
 
   await journey.save();
-  res.redirect(`/dashboard/${journey._id}`);
+  // res.redirect(`/dashboard/${journey._id}`);
+  res.redirect('back');
+
 }
 
 async function createCategory(req, res) {
@@ -55,7 +57,8 @@ async function createCategory(req, res) {
     } catch (err) {
       console.log(err);
     }
-    res.redirect(`/dashboard/${journey._id}`);
+    // res.redirect(`/dashboard/${journey._id}`);
+    res.redirect('back');
   }
 
   // async function updateCat(){}
@@ -104,5 +107,7 @@ async function createCategory(req, res) {
 
     await journey.save();
 
-    res.redirect(`/dashboard/${journey._id}`);
+    // res.redirect(`/dashboard/${journey._id}`);
+    res.redirect('back');
+
   }

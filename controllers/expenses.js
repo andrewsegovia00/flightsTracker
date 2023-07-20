@@ -89,7 +89,7 @@ async function createCategory(req, res) {
     if (!journey) return res.redirect('/dashboard')
 
     const expenseIndex = journey.actualBudget.expenses.findIndex(
-            (expense) => expense._id.toString() === req.params.id);
+            (expense) => expense._id.toString() === req.params.id.toString());
     const expense = journey.actualBudget.expenses[expenseIndex];
     if(expense.title !== title && title !== '')
     {
@@ -109,11 +109,11 @@ async function createCategory(req, res) {
     }
     if(expense.category !== category && category !== '')
     {
-      expense.category.push(category);
+      expense.category = category;
     }
     else
     {
-      expense.price = expense.price
+      expense.category = expense.category
     }
     if(expense.expenseDate !== expenseDate)
     {

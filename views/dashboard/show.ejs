@@ -33,19 +33,23 @@
                     <form id="journeyUpdate" method="POST" action="/dashboard/<%= journey._id %>?_method=PUT">
                         <div class="popUpSpacing">
                             <label>Journey Name:</label>
-                            <input type="text" name="destination" placeholder="Name">
+                            <input class="updateInput" type="text" name="destination"
+                                placeholder="<%= journey.destination%>">
                         </div>
                         <div class="popUpSpacing">
                             <label>Actual Spending Budget:</label>
-                            <input type="number" name="actTotal" placeholder="$0.00">
+                            <input class="updateInput" type="number" step="0.01" name="actTotal"
+                                placeholder="$<%= journey.actualBudget.totalBudget%>">
                         </div>
                         <div class="popUpSpacing">
                             <label>Simulated Budget:</label>
-                            <input type="number" name="simTotal" placeholder="$0.00">
+                            <input class="updateInput" type="number" step="0.01" name="simTotal"
+                                placeholder="$<%= journey.simulatedBudget.totalBudget %>">
+
                         </div>
                         <div class="popUpBtns">
                             <button class="CancelPopUp" type="button" id="closeEditJourney">Cancel</button>
-                            <input class="confirmsPopUp" type="submit" value="Add">
+                            <input class="confirmsPopUp" type="submit" value="Save">
                         </div>
                     </form>
                 </div>
@@ -68,7 +72,8 @@
                                 Total:
                             </h5>
                             <h5 class="amountIndivCount">
-                                $500
+                                <%= journey.actualBudget.totalBudget> 0 ? "$" + journey.actualBudget.totalBudget :
+                                    "$0" %>
                             </h5>
                         </div>
                         <div class="total-indiv-count">
@@ -121,7 +126,8 @@
                                 Total:
                             </h5>
                             <h5 class="amountIndivCount">
-                                $500
+                                <%= journey.simulatedBudget.totalBudget> 0 ? "$" + journey.simulatedBudget.totalBudget :
+                                    "$0" %>
                             </h5>
                         </div>
                         <div class="total-indiv-count">
@@ -178,17 +184,19 @@
                             <div class="left-header col-6">
                                 <h3>My Budget</h3>
                                 <h3>
-                                    <%= journey.actualBudget.total>= 0 ? $ + journey.actualBudget.total : `$0` %>
+                                    <%= journey.actualBudget.totalBudget> 0 ? "$" + journey.actualBudget.totalBudget :
+                                        "$0" %>
                                 </h3>
                             </div>
                             <div class="right-header col-6">
                                 <h3>Remaining Budget</h3>
                                 <h3>
-                                    <%= journey.actualBudget.total>= 0 ? $ + (journey.actualBudget.total - 500) : `$0`
-                                        %>
+                                    <%= journey.actualBudget.totalBudget> 0 ? "$" + (journey.actualBudget.totalBudget -
+                                        500) : "$0" %>
                                 </h3>
                             </div>
                         </div>
+
                         <h3 class="budgetTitle">Trip Expenses</h3>
                         <div class="table">
                             <div class="table-header">
@@ -211,17 +219,25 @@
                                             <p class="col-2">
                                                 <%= expense.expenseDate.toLocaleDateString('en-US') %>
                                             </p>
-                                            <p class="col-2">
-                                                <%= expense.category %>
-                                            </p>
+                                            <% if (expense.category && expense.category.name) { %>
+                                                <p class="col-2">
+                                                    <%= expense.category.name %>
+                                                </p>
+                                                <% } else { %>
+                                                    <p class="col-2">
+                                                        add Category
+                                                    </p>
+                                                    <% } %>
 
-                                            <div class="col-1 btn-container">
-                                                <button id="showUpdateModal" data-expense-id="<%= expense._id %>">
-                                                </button>
+                                                        <div class="col-1 btn-container">
+                                                            <button id="showUpdateModal"
+                                                                data-expense-id="<%= expense._id %>">
+                                                            </button>
 
-                                                <button id="showDeleteModal" data-expense-id="<%= expense._id %>">
-                                                </button>
-                                            </div>
+                                                            <button id="showDeleteModal"
+                                                                data-expense-id="<%= expense._id %>">
+                                                            </button>
+                                                        </div>
                                         </div>
                                         <div id="editExpModal" data-expense-id="<%= expense._id %>" class="hide">
                                             <div>Are you sure You want to EDIT this expense?</div>
@@ -249,7 +265,7 @@
                                                     <select name="category" id="category">
                                                         <% if (journey.actualBudget.category.length> 0) { %>
                                                             <% journey.actualBudget.category.forEach(category=> { %>
-                                                                <option value="<%= category.name %>"
+                                                                <option value="<%= category.id %>"
                                                                     id="<%= category._id %>">
                                                                     <%= category.name %>
                                                                 </option>
@@ -332,14 +348,17 @@
                         <div class="left-header col-6">
                             <h3>My Budget</h3>
                             <h3>
-                                <%= journey.simulatedBudget.total>= 0 ? $ + journey.simulatedBudget.total : `$0`%>
+                                <%= journey.actualBudget.totalBudget> 0 ? "$" + journey.actualBudget.totalBudget : "$0"
+                                    %>
                             </h3>
                         </div>
                         <div class="right-header col-6">
                             <h3>Remaining Budget</h3>
                             <h3>
-                                <%= journey.simulatedBudget.total>= 0 ? $ + (journey.simulatedBudget.total - 500) :
-                                    `$0`%>
+                                <%= journey.simulatedBudget.totalBudget> 0 ? "$" +
+                                    (journey.simulatedBudget.totalBudget
+                                    - 500) : "$0" %>
+
                             </h3>
                         </div>
                     </div>
@@ -361,7 +380,7 @@
                                             <%= category.name %>
                                         </p>
                                         <p class="col-3">
-                                            <%= ((category.price / 1000)*100) %>%
+                                            <%= Math.floor((category.price / 1000)*100) %>%
                                         </p>
                                         <p class="col-3">
                                             <%= category.price %>
@@ -435,7 +454,8 @@
                                                         </div>
                                                         <div class="popUpSpacing">
                                                             <label>Spending:</label>
-                                                            <input type="number" name="price" placeholder="$0.00">
+                                                            <input type="number" name="price" step="0.01"
+                                                                placeholder="$0.00">
                                                         </div>
                                                         <div class="popUpBtns">
                                                             <button class="CancelPopUp" type="button"
@@ -445,6 +465,7 @@
                                                     </form>
                                                 </div>
 
+                                                <!-- The div below needs to be refactored, it's using the same id name as a different Modal-->
                                                 <div id="editJourneyShowModal" class="hide">
                                                     <form id="simCategoryForm" method="POST"
                                                         action="/dashboard/<%= journey._id %>/expenses3">
@@ -454,7 +475,8 @@
                                                         </div>
                                                         <div class="popUpSpacing">
                                                             <label>Spending:</label>
-                                                            <input type="number" name="price" placeholder="$0.00">
+                                                            <input type="number" name="price" step="0.01"
+                                                                placeholder="$0.00">
                                                         </div>
                                                         <div class="popUpBtns">
                                                             <button class="CancelPopUp" type="button"

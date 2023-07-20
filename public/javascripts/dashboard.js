@@ -101,8 +101,6 @@ function switchBudget() {
 
         leftToggle.classList.remove('left-toggleTop')
         leftToggle.classList.add('left-toggleTopActive')
-
-        // rightToggle.classList.remove('')
     }
     else
     {

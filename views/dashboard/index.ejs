@@ -16,7 +16,7 @@
                     <% if (journeys.length> 0) { %>
                         <% journeys.forEach(function(j) { %>
                             <a href="/dashboard/<%= j._id %>">
-                                <div class="destCardContainerDash">
+                                <div class="destCardContainerDash" id="<%= j._id %>">
                                     <div class="destTitle">
                                         <%= j.destination %>
                                     </div>
@@ -27,14 +27,58 @@
                             </a>
                             <% }); %>
                                 <% } else { %>
-                                    <div class="middleFirstJourney">
-                                        <a href="/dashboard/new">
-                                            <button class="confirmsFirstJourney">+ ADD A NEW JOURNEY TO START</button>
-                                        </a>
-                                    </div>
                                     <% } %>
+
                 </div>
             </div>
         </div>
     </div>
-    <%- include('../partials/footer') %>
+
+    <script>
+        const destCardContainerDash = document.querySelectorAll(`.destCardContainerDash`);
+
+        const journeyBackgroundImages = [
+            'https://cdn.britannica.com/65/162465-050-9CDA9BC9/Alps-Switzerland.jpg',
+            'https://s1.travix.com/blog/as/asia-vietnam-halong-bay-boats-blue-water-sunny-small.jpg',
+            'https://media.cnn.com/api/v1/images/stellar/prod/190417162012-10-earth-beautiful-places.jpg?q=w_3101,h_1744,x_0,y_0,c_fill',
+            'https://www.jetsetter.com//uploads/sites/7/2018/04/9s9_ATCO.jpeg',
+            'https://static-cse.canva.com/blob/561933/johannesgroll253834unsplash.jpg',
+            'https://hips.hearstapps.com/hmg-prod/images/scenic-sunrise-above-bagan-in-myanmar-royalty-free-image-1658261755.jpg',
+            'https://hips.hearstapps.com/hmg-prod/images/majestic-mountain-landscape-machu-picchu-peru-royalty-free-image-1658260333.jpg',
+            'https://static.boredpanda.com/blog/wp-content/uuuploads/unbelievable-places/unbelievable-places-8.jpg',
+            'https://planetofhotels.com/guide/sites/default/files/styles/node__blog_post__bp_banner/public/2021-01/Kirkjufell-volcano.jpg',
+            'https://assets.editorial.aetnd.com/uploads/2019/03/topic-london-gettyimages-760251843-feature.jpg',
+            'https://cdn.mos.cms.futurecdn.net/fs5rJxVnkbrumyJyfQ8tQg.jpg',
+            'https://nomadparadise.com/wp-content/uploads/2020/05/beautiful-places-003.jpg',
+            'https://greenstories.co.in/wp-content/uploads/2021/02/Whitehaven-Beach-1.jpg',
+            'https://hips.hearstapps.com/hmg-prod/images/florence-cathedral-royalty-free-image-1644801947.jpg',
+            'https://hips.hearstapps.com/hmg-prod/images/screen-shot-2019-12-10-at-12-14-03-pm-1575998085.png',
+            'https://itsadrama.com/wp-content/uploads/2020/05/Most-beautiful-place-on-earth-Paris-.jpg',
+            'https://i0.wp.com/theluxurytravelexpert.com/wp-content/uploads/2014/01/paris-france.jpg?fit=970%2C546&ssl=1',
+            'https://d2uqfpnktc64mn.cloudfront.net/uploads/post/image/000/001/195/default_Image-by-gerdragon.-Neuschwanstein.-Bavaria_-Germany..jpg',
+            'https://tourinplanet.com/wp-content/uploads/2022/12/Top-10-Destinations-to-Visit-.jpg',
+            'https://i0.wp.com/theluxurytravelexpert.com/wp-content/uploads/2014/01/hong-kong-china.jpeg?ssl=1',
+
+        ]
+
+        function addJourneyImg(url, id) {
+            const journeyBckImg = document.getElementById(id);
+            if (url !== null) {
+                journeyBckImg.style.backgroundImage = `url(${url})`;
+            } else {
+                const randomImageUrl = journeyBackgroundImages[Math.floor(Math.random() * journeyBackgroundImages.length)];
+                journeyBckImg.style.backgroundImage = `url(${randomImageUrl})`;
+                journeyBckImg.style.color = 'black';
+            }
+        }
+
+  // Call addJourneyImg() for each journey in your array
+  <% journeys.forEach(function (j) { %>
+    <% if (j.imgurl) { %>
+                addJourneyImg('<%= j.imgurl %>', '<%= j._id %>');
+    <% } else { %>
+                addJourneyImg(null, '<%= j._id %>');
+    <% } %>
+  <% }); %>
+
+    </script>
