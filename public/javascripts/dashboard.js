@@ -332,3 +332,18 @@ noEditSimCat.forEach(cancel => {
     deleteJourneyShowModal.classList.remove('popUp');
     deleteJourneyShowModal.classList.add('hide');
     }
+
+
+
+    const delCategoryBtn = document.getElementById('delCategoryBtn')
+    const delCatModal = document.getElementById('catDelModal')
+    const closeCatModal = document.getElementById('closeCatBtn')
+    delCategoryBtn.addEventListener('click', () => {
+      delCatModal.classList.remove('hide')
+      delCatModal.classList.add('popUp')
+    })
+
+    closeCatModal.addEventListener('click', () => {
+      delCatModal.classList.remove('popUp')
+      delCatModal.classList.add('hide')
+    })

@@ -7,8 +7,11 @@ router.post('/dashboard/:id/expenses2', ensureLoggedIn, categoriesCtrl.createCat
 
 router.post('/dashboard/:id/expenses3', ensureLoggedIn, categoriesCtrl.createCategory2);
 
+console.log('you passed by here')
+
 // DELETE 
 router.delete('/categories/:id', ensureLoggedIn, categoriesCtrl.deleteSimCat);
+router.delete('/abCategories', ensureLoggedIn, categoriesCtrl.deleteCat);
 
 // PUT 
 router.put('/categories/:id', ensureLoggedIn, categoriesCtrl.updateSimCat);

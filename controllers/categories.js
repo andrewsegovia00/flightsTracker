@@ -5,6 +5,7 @@ module.exports = {
   createCategory,
   createCategory2,
   deleteSimCat: deleteCategories,
+  deleteCat,
   // updateCat,
   updateSimCat,
   addToCategoryArray,
@@ -19,11 +20,29 @@ async function deleteCategories(req, res) {
       (category) => category._id.toString() === req.params.id
     );
     journey.simulatedBudget.category.splice(categoryIndex, 1);
-
   await journey.save();
   // res.redirect(`/dashboard/${journey._id}`);
   res.redirect('back');
+}
 
+async function deleteCat(req, res) {
+  const journey = await Journey.findOne({ 'user': req.user._id, 'actualBudget.category': req.body.category});
+
+  if (!journey) return res.redirect('/dashboard');
+  const categoryIndex = journey.actualBudget.category.findIndex(
+    (category) => category._id.toString() === req.body.category
+  );
+  journey.actualBudget.category.splice(categoryIndex, 1);
+
+  for (let i = 0; i < journey.actualBudget.expenses.length; i++) {
+    if (journey.actualBudget.expenses[i].category && journey.actualBudget.expenses[i].category.toString() === req.body.category) {
+      journey.actualBudget.expenses[i].category = undefined;
+    }
+  }
+  
+  await journey.save();
+  await CategoryAB.findOneAndDelete({'_id': req.body.category})
+  res.redirect('back');
 }
 
 async function createCategory(req, res) {

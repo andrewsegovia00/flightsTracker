@@ -1,3 +1,4 @@
+const Category = require('../models/abCategory');
 const Journey = require('../models/journey');
 
 module.exports = {
@@ -38,14 +39,67 @@ async function updateJourney(req, res) {
   }
 }
 
+// Assuming you have a model named 'Expense' for expenses and 'Category' for categories
+
+// async function getTopCategories(journey) {
+//   try {
+//     const categoryExpensesMap = new Map();
+
+//     journey.actualBudget.expenses.forEach((expense) => {
+//       const categoryId = expense.category ? expense.category.toString() : null;
+//       const expenseAmount = expense.price;
+
+//       if (categoryId !== null) {
+//         if (categoryExpensesMap.has(categoryId)) {
+//           categoryExpensesMap.set(categoryId, categoryExpensesMap.get(categoryId) + expenseAmount);
+//         } else {
+//           categoryExpensesMap.set(categoryId, expenseAmount);
+//         }
+//       }
+//     });
+
+//     const categoryExpensesArray = Array.from(categoryExpensesMap, ([categoryId, totalExpenses]) => ({
+//       categoryId,
+//       totalExpenses,
+//     }));
+
+//     categoryExpensesArray.sort((a, b) => b.totalExpenses - a.totalExpenses);
+
+//     const top5Categories = categoryExpensesArray.slice(0, 5);
+
+//     const top5CategoriesDetails = await Category.find({
+//       _id: { $in: top5Categories.map((category) => category.categoryId) },
+//     });
+
+//     const topCategoriesWithExpenses = top5Categories.map((category) => {
+//       const categoryDetails = top5CategoriesDetails.find((c) => c.toString() === category.categoryId);
+//       return {
+//         category: categoryDetails,
+//         totalExpenses: category.totalExpenses,
+//       };
+//     });
+
+//     return topCategoriesWithExpenses;
+//   } catch (err) {
+//     console.error(err);
+//     throw err;
+//   }
+// }
+
+
 async function index(req, res) {
   const journeys = await Journey.find({ user: req.user._id });
-  res.render('dashboard/index', { title: 'My Journeys', journeys: journeys });
+  res.render('dashboard/index', { title: 'My Journeys', journeys: journeys});
 }
 
 async function show(req, res) {
   const journey = await Journey.findById(req.params.id).populate('actualBudget.category').populate('actualBudget.expenses.category');
-  res.render('dashboard/show', { title: `${journey.destination}`, journey: journey });
+
+  // const topCategoriesData = await getTopCategories(journey);
+  // console.log(topCategoriesData) 
+  // console.log("topCategoriesData") 
+
+  res.render('dashboard/show', { title: `${journey.destination}`, journey: journey});
 }
 
 

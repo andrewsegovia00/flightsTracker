@@ -320,6 +320,28 @@
                             </div>
                         </form>
                     </div>
+                    <div id="catDelModal" class="hide">
+                        <form id="expenseForm" class="" method="POST" action="/abCategories?_method=DELETE">
+                            <div>
+                                <label for="category">Category:</label>
+                                <select name="category" id="category">
+                                    <% if (journey.actualBudget.category.length> 0) { %>
+                                        <% journey.actualBudget.category.forEach(category=> { %>
+                                            <option value="<%= category.id %>" id="<%= category._id %>">
+                                                <%= category.name %>
+                                            </option>
+                                            <% }); %>
+                                                <% } else { %>
+                                                    <option value="Coming Soon">Coming Soon</option>
+                                                    <% } %>
+                                </select>
+                            </div>
+                            <div class="popUpBtns">
+                                <button class="CancelPopUp" type="button" id="closeCatBtn">Cancel</button>
+                                <input class="confirmsPopUp" type="submit" value="Delete">
+                            </div>
+                        </form>
+                    </div>
 
                     <div id="showCat" class="hide">
                         <form id="categoryForm" method="POST" action="/dashboard/<%= journey._id %>/expenses2">
@@ -336,6 +358,7 @@
 
                     <button id="addExpenseBtn" class="addingBtns">+ Expense</button>
                     <button id="addCategoryBtn" class="addingBtns">+ Categories</button>
+                    <button id="delCategoryBtn" class="addingBtns">Delete Categories</button>
                 </div>
             </div>
 
