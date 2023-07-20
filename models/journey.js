@@ -21,7 +21,10 @@ const expensesSchema = new Schema({
           return new Date;
       }
   },  
-  category: [],
+  category: {
+    type: Schema.Types.ObjectId,
+    ref: 'CategoryAB',
+  },
 }, {
   timestamps: true
 });
@@ -34,9 +37,9 @@ const actualBudgetSchema = new Schema({
     }
   ],
   expenses: [expensesSchema], 
-    totalBudget: {
-      type: Number,
-      default: 0,
+  totalBudget: {
+    type: Number,
+    default: 0,
   }
     },
   {
