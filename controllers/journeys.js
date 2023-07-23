@@ -16,10 +16,10 @@ async function updateJourney(req, res) {
   try{
     let actTotals = journey.actualBudget.totalBudget;
     let simTotals = journey.simulatedBudget.totalBudget;
-    console.log(actTotals)
-    console.log(simTotals)
-    console.log(actTotal)
-    console.log(simTotal)
+    // console.log(actTotals)
+    // console.log(simTotals)
+    // console.log(actTotal)
+    // console.log(simTotal)
     if(actTotals !== actTotal && actTotal !== '' && actTotal >= 0)
     {
       journey.actualBudget.totalBudget = actTotal;
@@ -47,6 +47,7 @@ async function updateJourney(req, res) {
 
 //     journey.actualBudget.expenses.forEach((expense) => {
 //       const categoryId = expense.category ? expense.category.toString() : null;
+//       // const categoryName = expense.category ? expense.category.name : null;
 //       const expenseAmount = expense.price;
 
 //       if (categoryId !== null) {
@@ -57,6 +58,7 @@ async function updateJourney(req, res) {
 //         }
 //       }
 //     });
+//     // console.log(categoryExpensesMap);
 
 //     const categoryExpensesArray = Array.from(categoryExpensesMap, ([categoryId, totalExpenses]) => ({
 //       categoryId,
@@ -81,25 +83,97 @@ async function updateJourney(req, res) {
 
 //     return topCategoriesWithExpenses;
 //   } catch (err) {
-//     console.error(err);
-//     throw err;
-//   }
-// }
+  //     console.error(err);
+  //     throw err;
+  //   }
+  // }
+  
+  // async function show(req, res) {
+    //   const journey = await Journey.findById(req.params.id).populate('actualBudget.category').populate('actualBudget.expenses.category');
+    // const topCategoriesData = await getTopCategories(journey);
+    // console.log(topCategoriesData) 
+    // console.log("topCategoriesData") 
+    
+    //   res.render('dashboard/show', { title: `${journey.destination}`, journey: journey});
+    // }
+    
+async function getTopCategories(journey) {
+  try {
+    const categoryExpensesMap = new Map();
 
+    journey.actualBudget.expenses.forEach((expense) => {
+      const categoryId = expense.category ? expense.category : null;
+      const expenseAmount = expense.price;
 
-async function index(req, res) {
-  const journeys = await Journey.find({ user: req.user._id });
-  res.render('dashboard/index', { title: 'My Journeys', journeys: journeys});
+      if (categoryId !== null) {
+        if (categoryExpensesMap.has(categoryId)) {
+          categoryExpensesMap.set(categoryId, categoryExpensesMap.get(categoryId) + expenseAmount);
+        } else {
+          categoryExpensesMap.set(categoryId, expenseAmount);
+        }
+      }
+    });
+
+    const categoryExpensesArray = Array.from(categoryExpensesMap, ([categoryId, totalExpenses]) => ({
+      categoryId,
+      totalExpenses,
+    }));
+
+    categoryExpensesArray.sort((a, b) => b.totalExpenses - a.totalExpenses);
+
+    const top5Categories = categoryExpensesArray.slice(0, 5);
+
+    const top5CategoryIds = top5Categories.map((category) => category.categoryId);
+
+    const top5CategoriesDetails = await Category.find({
+      _id: { $in: top5CategoryIds },
+    });
+
+    const topCategoriesWithExpenses = top5Categories.map((category) => {
+      const categoryDetails = top5CategoriesDetails.find((c) => c._id.toString() === category.categoryId);
+      return {
+        category: categoryDetails,
+        totalExpenses: category.totalExpenses,
+      };
+    });
+
+    return topCategoriesWithExpenses;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
 }
 
 async function show(req, res) {
-  const journey = await Journey.findById(req.params.id).populate('actualBudget.category').populate('actualBudget.expenses.category');
+  try {
+    const journey = await Journey.findById(req.params.id)
+      .populate('actualBudget.category')
+      .populate('actualBudget.expenses.category');
 
-  // const topCategoriesData = await getTopCategories(journey);
-  // console.log(topCategoriesData) 
-  // console.log("topCategoriesData") 
+    const topCategories = await getTopCategories(journey);
 
-  res.render('dashboard/show', { title: `${journey.destination}`, journey: journey});
+    // Check if the client expects JSON response
+    const isJsonResponse = req.query.format === 'json';
+    console.log(topCategories)
+    if (isJsonResponse) {
+      res.json(topCategories);
+      res.render('dashboard/show', { title: `${journey.destination}`, journey: journey });
+    } else {
+      res.render('dashboard/show', { title: `${journey.destination}`, journey: journey });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+
+
+
+  
+async function index(req, res) {
+  const journeys = await Journey.find({ user: req.user._id });
+  res.render('dashboard/index', { title: 'My Journeys', journeys: journeys});
 }
 
 
@@ -112,7 +186,7 @@ async function create(req, res) {
     if (req.body[key] === '') delete req.body[key];
   }
   req.body.user = req.user._id;
-  console.log(req.body)
+  // console.log(req.body)
 
   try {
     const journey = await Journey.create(req.body);
