@@ -42,6 +42,8 @@ async function deleteCategories(req, res) {
 async function create(req, res) {
   const journey = await Journey.findById(req.params.id);
 
+  req.body.price = parseFloat(req.body.price).toFixed(2);
+
   const actualBudget = journey.actualBudget;
   actualBudget.expenses.push(req.body);
     console.log(actualBudget);
@@ -56,7 +58,6 @@ async function create(req, res) {
 
 async function createCategory(req, res) {
     const journey = await Journey.findById(req.params.id);
-  
     const actualBudget = journey.actualBudget;
     actualBudget.category.push(req.body);
     try {
@@ -69,6 +70,7 @@ async function createCategory(req, res) {
 
   async function createCategory2(req, res) {
     const journey = await Journey.findById(req.params.id);
+    req.body.price = parseFloat(req.body.price).toFixed(2);
   
     const simulatedBudget = journey.simulatedBudget;
     simulatedBudget.category.push(req.body);
@@ -82,8 +84,16 @@ async function createCategory(req, res) {
 
   async function updateExp(req, res)
   {
+    let { title, price, expenseDate, category } = req.body;
+    if(price !== NaN) 
+    {
+      price = parseFloat(req.body.price).toFixed(2);
+    } 
+    else
+    {
+      req.body.price = ''
+    }
     console.log(req.body);
-    const { title, price, expenseDate, category } = req.body;
     const journey = await Journey.findOne({ 'user': req.user._id, 'actualBudget.expenses._id': req.params.id});
 
     if (!journey) return res.redirect('/dashboard')
@@ -99,7 +109,7 @@ async function createCategory(req, res) {
     {
       expense.title = expense.title
     }
-    if(expense.price !== price && price !== '')
+    if(expense.price !== price && price !== '' && price !== NaN && price !== null)
     {
       expense.price = price;
     }
@@ -133,6 +143,7 @@ async function createCategory(req, res) {
     console.log(`we made it here 2020202020`)
     console.log(req.body)
     console.log(req.params.id)
+    req.body.price = parseFloat(req.body.price).toFixed(2);
     
     const { name, price } = req.body;
     const journey = await Journey.findOne({ 'user': req.user._id, 'simulatedBudget.category._id': req.params.id});

@@ -11,6 +11,8 @@ module.exports = {
 };
 
 async function updateJourney(req, res) {
+  req.body.actTotal = parseFloat(req.body.actTotal).toFixed(2);
+  req.body.simTotal = parseFloat(req.body.simTotal).toFixed(2);
   const {destination, actTotal, simTotal} = req.body;
   const journey = await Journey.findOne({ user: req.user._id, _id: req.params.id });
   try{
@@ -114,7 +116,6 @@ async function show(req, res) {
     const topCategories = await getTopCategories(journey);
     const topCategoriesSim = await getTopSimCategories(journey);
 
-    // Check if the client expects JSON response
     const isJsonResponse = req.query.format === 'json';
     if (isJsonResponse) {
       res.json(topCategories);
