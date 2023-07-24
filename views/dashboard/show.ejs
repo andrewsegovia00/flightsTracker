@@ -76,46 +76,18 @@
                                     "$0" %>
                             </h5>
                         </div>
-                        <div class="total-indiv-count">
-                            <h6 class="">
-                                Food
-                            </h6>
-                            <h6 class="amountIndivCount">
-                                $100
-                            </h6>
-                        </div>
-                        <div class="total-indiv-count">
-                            <h6 class="">
-                                Accomodation
-                            </h6>
-                            <h6 class="amountIndivCount">
-                                $100
-                            </h6>
-                        </div>
-                        <div class="total-indiv-count">
-                            <h6 class="">
-                                Airfare
-                            </h6>
-                            <h6 class="amountIndivCount">
-                                $100
-                            </h6>
-                        </div>
-                        <div class="total-indiv-count">
-                            <h6 class="">
-                                Transportation
-                            </h6>
-                            <h6 class="amountIndivCount">
-                                $100
-                            </h6>
-                        </div>
-                        <div class="total-indiv-count">
-                            <h6 class="">
-                                Activities
-                            </h6>
-                            <h6 class="amountIndivCount">
-                                $100
-                            </h6>
-                        </div>
+                        <% if(topCategoriesAB) { %>
+                            <% topCategoriesAB.forEach( category=> { %>
+                                <div class="total-indiv-count">
+                                    <h6 class="">
+                                        <%= category.categoryName==="__NA__" ? "N/A" : category.categoryName %>
+                                    </h6>
+                                    <h6 class="amountIndivCount">
+                                        $<%= category.totalExpenses %>
+                                    </h6>
+                                </div>
+                                <% }); %>
+                                    <% } %>
                     </div>
                 </div>
                 <div id="SimTotals">
@@ -130,46 +102,18 @@
                                     "$0" %>
                             </h5>
                         </div>
-                        <div class="total-indiv-count">
-                            <h6 class="">
-                                Food
-                            </h6>
-                            <h6 class="amountIndivCount">
-                                $100
-                            </h6>
-                        </div>
-                        <div class="total-indiv-count">
-                            <h6 class="">
-                                Accomodation
-                            </h6>
-                            <h6 class="amountIndivCount">
-                                $100
-                            </h6>
-                        </div>
-                        <div class="total-indiv-count">
-                            <h6 class="">
-                                Airfare
-                            </h6>
-                            <h6 class="amountIndivCount">
-                                $100
-                            </h6>
-                        </div>
-                        <div class="total-indiv-count">
-                            <h6 class="">
-                                Transportation
-                            </h6>
-                            <h6 class="amountIndivCount">
-                                $100
-                            </h6>
-                        </div>
-                        <div class="total-indiv-count">
-                            <h6 class="">
-                                Activities
-                            </h6>
-                            <h6 class="amountIndivCount">
-                                $100
-                            </h6>
-                        </div>
+                        <% if(topCategoriesSim) { %>
+                            <% topCategoriesSim.forEach( cat=> { %>
+                                <div class="total-indiv-count">
+                                    <h6 class="">
+                                        <%= cat.catName===null ? "N/A" : cat.catName %>
+                                    </h6>
+                                    <h6 class="amountIndivCount">
+                                        $<%= cat.catAmount %>
+                                    </h6>
+                                </div>
+                                <% }); %>
+                                    <% } %>
                     </div>
                 </div>
 
